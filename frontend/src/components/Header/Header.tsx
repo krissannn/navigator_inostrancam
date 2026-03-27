@@ -1,5 +1,5 @@
 
-import classes from './Header.module.css'
+import classes from './Styles.module.scss'
 
 function Header() {
   return (

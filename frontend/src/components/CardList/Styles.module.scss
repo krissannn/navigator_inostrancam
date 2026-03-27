@@ -1,6 +1,7 @@
 
 
 .cards_container {
+  padding-top: 40px;
   display: grid;
   grid-template-columns: repeat(3, 400px);
   grid-auto-rows: auto;

@@ -1,17 +1,19 @@
 
 
-import Header from './components/Header/Header'
-import CardList from './components/CardList/CardList'
-import {cardsData} from './DB/cardsData'
 import './App.css'
+import { BrowserRouter } from 'react-router'
+
+import AppRouter from './routes/AppRouter'
 
 function App() {
 
 
   return (
     <>
-      <Header />
-      <CardList cardsData={cardsData}/>
+      <BrowserRouter>
+        <AppRouter />
+        
+      </BrowserRouter>
     </>
   )
 }

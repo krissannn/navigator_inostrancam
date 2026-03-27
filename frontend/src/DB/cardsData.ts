@@ -25,7 +25,7 @@ export const cardsData: CardDataElement[]= [
   {
     id: 3,
     logo: './src/assets/registration.svg',
-    title: 'Первичная решистрация',
+    title: 'Первичная регистрация',
     subtitle: 'Отчёт 90 дней'
   },
   {

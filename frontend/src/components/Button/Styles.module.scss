@@ -1,0 +1,15 @@
+
+.button {
+  background-color: rgba(40, 132, 237, 1);
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  font-family: Roboto, sans-serif;
+  border: none;
+  border: 1px solid black;
+}
+
+.button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}

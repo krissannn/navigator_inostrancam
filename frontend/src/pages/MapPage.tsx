@@ -1,16 +1,16 @@
+import type { CardDataElement } from "../DB/cardsData"
+import BasePage from "./BasePage"
 
-import classes from './Styles.module.scss'
-import Button from '../components/Button/Button'
-import { useNavigate } from 'react-router'
+interface MapPageProps {
+  pageData: CardDataElement
+}
 
-function MapPage() {
 
-  const navigate = useNavigate()
+function MapPage({pageData}: MapPageProps) {
 
   return (
     <>
-      <h1 className={classes.title}>Map Page</h1>
-      <Button name="Return Button" onClick={() => navigate("/")}/>
+      <BasePage pageData={pageData} />
     </>
   )
   

@@ -8,25 +8,53 @@ import InitialCheckInPage from '../pages/InitialCheckInPage'
 import InitialRegistrationPage from '../pages/InitialRegistrationPage'
 import MapPage from '../pages/MapPage'
 import PermissionPage from '../pages/PermissionPage'
+import Select from '../components/Select/Select'
+import { useEffect, useState } from 'react'
+
+import { EnglishCardsData, RussianCardsData, ChineseCardsData } from '../DB/cardsData'
 
 
 function AppRouter() {
 
+  const [language, setLanguage] = useState("Russian")
+  const [cardsData, setCardsData] = useState(RussianCardsData)
+
+  const checkLanguage = () => {
+    if (language === "Russian"){
+      setCardsData(RussianCardsData)
+    }
+    else if (language === "English") {
+      setCardsData(EnglishCardsData)
+    }
+    else {
+      setCardsData(ChineseCardsData)
+    }
+  }
+
+  useEffect(() => {
+    checkLanguage()
+  }, [language])
+
   const navigationRoutes = [
-    {path: "/", page: <MainPage />},
-    {path: "/plane", page: <PlanePage/>},
-    {path: "/docs", page: <DocumentsPage/>},
-    {path: "/dorm", page: <DormitoryPage/>},
-    {path: "/check-in", page: <InitialCheckInPage/>},
-    {path: "/initial-registration", page: <InitialRegistrationPage/>},
-    {path: "/map", page: <MapPage />},
-    {path: "/permission", page: <PermissionPage />}
+    {path: "/", page: <MainPage cardsData = {cardsData}/>},
+    {path: "/plane", page: <PlanePage pageData={cardsData[0]}/>},
+    {path: "/check-in", page: <InitialCheckInPage pageData={cardsData[1]}/>},
+    {path: "/dorm", page: <DormitoryPage pageData={cardsData[2]}/>},
+    {path: "/initial-registration", page: <InitialRegistrationPage pageData={cardsData[3]}/>},
+    {path: "/docs", page: <DocumentsPage pageData={cardsData[4]}/>},
+    {path: "/map", page: <MapPage pageData={cardsData[5]}/>},
+    {path: "/permission", page: <PermissionPage pageData={cardsData[6]}/>}
   ]
 
+  console.log(language)
+
   return (
-    <Routes>
-      {navigationRoutes.map(route => <Route key={route.path} path={route.path} element={route.page}/>)}
-    </Routes>
+    <>
+      <Select setLanguage={setLanguage}/>
+      <Routes>
+        {navigationRoutes.map(route => <Route key={route.path} path={route.path} element={route.page}/>)}
+      </Routes>
+    </>
   )
 }
 

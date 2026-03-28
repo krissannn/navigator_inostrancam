@@ -1,0 +1,34 @@
+
+
+
+.page_card {
+  margin: 0 auto;
+  width: 60%;
+  background-color: white;
+  border-radius: 20px;
+  padding: 15px;
+}
+
+.page_card_img {
+  width: 50px;
+  color: white;
+  background-color: rgb(13, 71, 137);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.page_card_counter {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  width: 60px;
+  text-align: center;
+}
+
+.page_card_top {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+}

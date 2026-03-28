@@ -1,16 +1,16 @@
+import type { CardDataElement } from "../DB/cardsData"
+import BasePage from "./BasePage"
 
-import classes from './Styles.module.scss'
-import Button from '../components/Button/Button'
-import { useNavigate } from 'react-router'
 
-function InitialRegistrationPage(){
+interface InitialRegistrationPageProps {
+  pageData: CardDataElement
+}
 
-  const navigate = useNavigate()
+function InitialRegistrationPage({pageData}: InitialRegistrationPageProps){
 
   return (
     <>
-      <h1 className={classes.title}>Initial Registration Page</h1>
-      <Button name="Return Button" onClick={() => navigate("/")}/>
+      <BasePage pageData={pageData}/>
     </>
   )
 }

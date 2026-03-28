@@ -1,17 +1,19 @@
 
-import classes from './Styles.module.scss'
-import Button from '../components/Button/Button'
-import { useNavigate } from 'react-router'
+import type { CardDataElement } from '../DB/cardsData'
+import BasePage from './BasePage'
 
 
-function PermissionPage() {
+interface PermissionPageProps {
+  pageData: CardDataElement
+}
 
-  const navigate = useNavigate()
+
+function PermissionPage({pageData}: PermissionPageProps) {
+
 
   return (
     <>
-      <h1 className={classes.title}>Permission Page</h1>
-      <Button name="Return Button" onClick={() => navigate("/")}/>
+      <BasePage pageData={pageData} />
     </>
   )
 }

@@ -1,15 +1,17 @@
-import { useNavigate } from "react-router"
-import Button from "../components/Button/Button"
-import classes from './Styles.module.scss'
 
-function DocumentsPage() {
+import BasePage from "./BasePage"
+import type { CardDataElement } from "../DB/cardsData"
 
-  const navigate = useNavigate()
+
+interface DocumentsPageProps {
+  pageData: CardDataElement
+}
+
+function DocumentsPage({pageData}: DocumentsPageProps) {
 
   return (
     <>
-      <h1 className={classes.title}>Documents Page</h1>
-      <Button name="Return Button" onClick={() => navigate("/")}/>
+      <BasePage pageData={pageData}/>
     </>
   )
 }

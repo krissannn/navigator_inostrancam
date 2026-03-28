@@ -1,8 +1,15 @@
 import Header from '../components/Header/Header'
 import CardList from '../components/CardList/CardList'
-import {cardsData} from '../DB/cardsData'
+import {type CardDataElement} from '../DB/cardsData'
 
-function MainPage() {
+
+
+interface MainPageProps {
+  cardsData: CardDataElement[]
+}
+
+function MainPage({cardsData}: MainPageProps) {
+
   return (
     <>
       <Header />

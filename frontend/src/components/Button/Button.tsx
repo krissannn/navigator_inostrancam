@@ -2,13 +2,17 @@ import classes from "./Styles.module.scss"
 
 
 interface ButtonProps {
-  name: string,
   onClick: () => void
 }
 
-function Button({name, onClick}: ButtonProps) {
+function Button({onClick}: ButtonProps) {
   return (
-    <button className={classes.button} type="button" onClick={onClick}>{name}</button>
+    <>
+    
+      <button className={classes.button} type="button" onClick={onClick}>
+        <img src="../../src/assets/arrow_back.svg" />
+      </button>
+    </>
   )
 }
 

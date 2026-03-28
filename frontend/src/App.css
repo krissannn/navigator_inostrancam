@@ -10,7 +10,6 @@
   background: #020024;
   background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(17, 17, 105, 1) 35%, rgba(40, 132, 237, 1) 100%);
   font-family: Roboto, sans-serif;
-  background-repeat: no-repeat;
   width: 100vw;
   height: 100vh;
 }

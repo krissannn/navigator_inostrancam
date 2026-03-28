@@ -1,17 +1,17 @@
-
-import classes from './Styles.module.scss'
-import { useNavigate } from 'react-router'
-import Button from "../components/Button/Button"
+import type { CardDataElement } from "../DB/cardsData"
+import BasePage from "./BasePage"
 
 
-function DormitoryPage() {
+interface DormitoryPageProps {
+  pageData: CardDataElement
+}
 
-  const navigate = useNavigate()
+
+function DormitoryPage({pageData}: DormitoryPageProps) {
 
   return (
     <> 
-      <h1 className={classes.title}>Dormitory Page</h1>
-      <Button name="Return Button" onClick={() => navigate("/")}/>
+      <BasePage pageData={pageData}/>
     </>
 )
 }

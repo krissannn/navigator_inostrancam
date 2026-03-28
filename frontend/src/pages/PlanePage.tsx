@@ -1,16 +1,17 @@
-import { useNavigate } from "react-router"
-import Button from "../components/Button/Button"
 
-import classes from './Styles.module.scss'
 
-function PlanePage() {
+import type { CardDataElement } from "../DB/cardsData";
+import BasePage from "./BasePage"
 
-  const navigate = useNavigate()
+interface PlanePageProps {
+  pageData: CardDataElement
+}
+
+function PlanePage({pageData}: PlanePageProps ) {
 
   return (
     <> 
-      <h1 className={classes.title}>Получение миграционной карты</h1>
-      <Button name="Return Button" onClick={() => navigate("/")}/>
+      <BasePage pageData={pageData}/>
     </>
    )
   }

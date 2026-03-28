@@ -3,8 +3,16 @@
 .cards_container {
   padding-top: 40px;
   display: grid;
-  grid-template-columns: repeat(3, 400px);
+  grid-template-columns: repeat(3, 25%);
   grid-auto-rows: auto;
   gap: 30px;
   justify-content: center;
+}
+
+
+
+@media (width < 768px){
+  .cards_container {
+    grid-template-columns: repeat(2, 40%);
+  }
 }

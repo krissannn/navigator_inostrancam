@@ -4,9 +4,37 @@
   background-color: white;
   border-radius: 20px;
   padding: 15px;
+  position: relative;
+  height: 175px;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+
+  &:hover .card_img {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+
+   &:hover::after {
+    content: "Подробнее >";
+    font-family: 'Roboto';
+    font-weight: 700;
+    position: absolute;
+    bottom: 10px;
+    left: 5%;
+    padding: 10px 0;
+    color: rgb(13, 71, 137);
+    font-size: 0.9rem;
+  }
+
+
 }
 
 .card_img {
+
   width: 50px;
   color: white;
   background-color: rgb(13, 71, 137);

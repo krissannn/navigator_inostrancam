@@ -9,11 +9,6 @@ export type CardDataElement = {
 
 export const RussianCardsData: CardDataElement[]= [
   {
-    id: 0,
-    logo: './src/assets/plane.svg',
-    title: 'Получение миграционной карты и визы на границе'
-  },
-  {
     id: 1,
     logo: './src/assets/user.svg',
     title: 'Первичный заезд',

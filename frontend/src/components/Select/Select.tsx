@@ -16,9 +16,9 @@ function Select({setLanguage}: SelectProps) {
   return (
     <>
       <select onChange={onChange}>
-        <option value="Russian">Russian</option>
+        <option value="Russian">Русский</option>
         <option value="English">English</option>
-        <option value="Chinese">Chinese</option>
+        <option value="Chinese">中文</option>
       </select>
     </>
   )

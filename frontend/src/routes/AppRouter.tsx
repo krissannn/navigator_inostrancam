@@ -1,17 +1,19 @@
-import PlanePage from '../pages/PlanePage'
+import PlanePage from '../Pages/PlanePage'
 import { Route, Routes } from 'react-router'
 
-import MainPage from '../pages/MainPage'
-import DocumentsPage from '../pages/DocumentsPage'
-import DormitoryPage from '../pages/DormitoryPage'
-import InitialCheckInPage from '../pages/InitialCheckInPage'
-import InitialRegistrationPage from '../pages/InitialRegistrationPage'
-import MapPage from '../pages/MapPage'
-import PermissionPage from '../pages/PermissionPage'
-import Select from '../components/Select/Select'
+import MainPage from '../Pages/MainPage'
+import DocumentsPage from '../Pages/DocumentsPage'
+import DormitoryPage from '../Pages/DormitoryPage'
+import InitialCheckInPage from '../Pages/InitialCheckInPage'
+import InitialRegistrationPage from '../Pages/InitialRegistrationPage'
+import MapPage from '../Pages/MapPage'
+import PermissionPage from '../Pages/PermissionPage'
+import { Login } from '../Pages/Login/Login'
 import { useEffect, useState } from 'react'
 
 import { EnglishCardsData, RussianCardsData, ChineseCardsData } from '../DB/cardsData'
+import Header from '../components/Header/Header'
+import { NotFoundPage } from '../Pages/NotFoundPage/NotFoundPage'
 
 
 function AppRouter() {
@@ -43,14 +45,14 @@ function AppRouter() {
     {path: "/initial-registration", page: <InitialRegistrationPage pageData={cardsData[3]}/>},
     {path: "/docs", page: <DocumentsPage pageData={cardsData[4]}/>},
     {path: "/map", page: <MapPage pageData={cardsData[5]}/>},
-    {path: "/permission", page: <PermissionPage pageData={cardsData[6]}/>}
+    {path: "/permission", page: <PermissionPage pageData={cardsData[6]}/>},
+    {path: "/login", page: <Login />},
+    {path: "/*", page: <NotFoundPage/>}
   ]
-
-  console.log(language)
 
   return (
     <>
-      <Select setLanguage={setLanguage}/>
+      <Header setLanguage={setLanguage}/>
       <Routes>
         {navigationRoutes.map(route => <Route key={route.path} path={route.path} element={route.page}/>)}
       </Routes>

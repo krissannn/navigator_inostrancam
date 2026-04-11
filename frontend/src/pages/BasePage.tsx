@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router"
-import Button from "../components/Button/Button"
+import Button from "../components/UI/Button/Button"
 import type { CardDataElement } from "../DB/cardsData"
 
 import PageCard from "../components/PageCard/PageCard"

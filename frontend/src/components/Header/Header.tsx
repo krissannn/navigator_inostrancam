@@ -1,11 +1,17 @@
+import Select from "../Select/Select"
+import styles from "./Styles.module.scss"
+import { Link } from 'react-router'
 
-import classes from './Styles.module.scss'
+function Header({setLanguage}: {setLanguage: (language: string) => void}) {
 
-function Header() {
+
   return (
-    <header className={classes.header}>
-      <h1 className={classes.title}>Навигатор для иностранных студентов</h1>
-      <h3 className={classes.subtitle}>Пошаговое руководство по адаптации в России</h3>
+    <header className={styles.header}>
+      <Select setLanguage={setLanguage} />
+      <Link to="/login">   
+        <button className={styles.header__button} type="button">Войти</button>
+      </Link>
+
     </header>
   )
 }

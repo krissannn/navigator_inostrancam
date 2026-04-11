@@ -1,0 +1,19 @@
+
+
+.select {
+  border: 2px solid #dddddd;
+  background: #eeeeee;
+  padding: 5px;
+  transition: 0.4s;
+  min-width: 100px;
+  border: none;
+  border: 1px solid var(--blue-color);
+  border-radius: 10px;
+
+
+  &:hover {
+    background: #dddddd;
+  }
+
+}
+

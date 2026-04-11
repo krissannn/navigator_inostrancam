@@ -1,8 +1,8 @@
 import type { ChangeEvent } from "react";
+import styles from './Styles.module.scss'
 
 
-
-interface SelectProps {
+export interface SelectProps {
   setLanguage: (language: string) => void
 }
 
@@ -15,7 +15,7 @@ function Select({setLanguage}: SelectProps) {
 
   return (
     <>
-      <select onChange={onChange}>
+      <select className={styles.select} onChange={onChange}>
         <option value="Russian">Русский</option>
         <option value="English">English</option>
         <option value="Chinese">中文</option>

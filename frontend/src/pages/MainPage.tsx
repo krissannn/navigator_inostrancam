@@ -1,6 +1,7 @@
-import Header from '../components/Header/Header'
+
 import CardList from '../components/CardList/CardList'
 import {type CardDataElement} from '../DB/cardsData'
+import Title from '../components/Title/Title'
 
 
 
@@ -12,7 +13,7 @@ function MainPage({cardsData}: MainPageProps) {
 
   return (
     <>
-      <Header />
+      <Title />
       <CardList cardsData={cardsData}/>
     </>
   )

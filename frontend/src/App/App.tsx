@@ -1,9 +1,9 @@
 
 
-import './App.css'
+import './Styles.scss'
 import { BrowserRouter } from 'react-router'
 
-import AppRouter from './routes/AppRouter'
+import AppRouter from '../Routes/AppRouter.tsx'
 
 function App() {
 

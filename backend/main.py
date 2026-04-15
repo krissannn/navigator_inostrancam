@@ -6,9 +6,6 @@ from typing import List
 from database import engine, Base, SessionLocal
 from models import Building, Room, Step, Article
 
-# НЕ создаём таблицы здесь! (сделаем это в Pre-Deploy Command)
-# Base.metadata.create_all(bind=engine)
-
 app = FastAPI(title="Navigator API")
 
 # CORS
@@ -20,8 +17,18 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Создаём таблицы ПРИ ПЕРВОМ ЗАПРОСЕ (не при импорте!)
+tables_created = False
+
+def create_tables_if_needed():
+    global tables_created
+    if not tables_created:
+        Base.metadata.create_all(bind=engine)
+        tables_created = True
+
 # Зависимость БД
 def get_db():
+    create_tables_if_needed()  # Создаём таблицы перед первым запросом
     db = SessionLocal()
     try:
         yield db
@@ -31,6 +38,7 @@ def get_db():
 # Health check
 @app.get("/health")
 def health_check():
+    create_tables_if_needed()
     return {"status": "ok"}
 
 # Получить все корпуса

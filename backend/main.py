@@ -9,7 +9,7 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Navigator API")
 
-# 🔥 Разрешаем запросы с фронтенда (CORS) — без этого не заработает!
+# 🔥 Разрешаем запросы с фронтенда (CORS)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -37,7 +37,7 @@ def get_buildings(db: Session = Depends(get_db)):
     buildings = db.query(Building).all()
     return buildings
 
-# 3. Добавить корпус (для наполнения базы)
+# 3. Добавить корпус
 @app.post("/api/buildings")
 def create_building(name: str, address: str, lat: float, lon: float, db: Session = Depends(get_db)):
     new_building = Building(name=name, address=address, lat=lat, lon=lon)
@@ -51,79 +51,31 @@ def create_building(name: str, address: str, lat: float, lon: float, db: Session
 # =============================================================================
 @app.get("/api/steps")
 def get_steps(db: Session = Depends(get_db)):
-    """
-    GET /api/steps
-    Возвращает список всех шагов адаптации
-    """
     steps = db.query(Step).order_by(Step.order).all()
     return steps
-
 
 # =============================================================================
 # ЭНДПОИНТ: Получить статьи конкретного шага
 # =============================================================================
 @app.get("/api/steps/{step_id}/articles")
 def get_step_articles(step_id: int, db: Session = Depends(get_db)):
-    """
-    GET /api/steps/{step_id}/articles
-    Возвращает все статьи для выбранного шага
-    """
     articles = db.query(Article).filter(
         Article.step_id == step_id
     ).order_by(Article.order).all()
     return articles
 
 # =============================================================================
-# ЭНДПОИНТ: Добавить новый шаг адаптации
+# ЭНДПОИНТ: Добавить новый шаг адаптации (ОСТАВЬ ТОЛЬКО ЭТУ ФУНКЦИЮ!)
 # =============================================================================
 @app.post("/api/steps")
 def create_step(
     id: int,
     title: str,
     icon: str,
+    title_en: str = None,
     order: int = 0,
     db: Session = Depends(get_db)
 ):
-    """
-    POST /api/steps
-    
-    Создает новый шаг адаптации
-    
-    Параметры:
-    - id: Уникальный номер шага (0, 1, 2...)
-    - title: Название шага
-    - icon: Название иконки (plane, home, car...)
-    - order: Порядок отображения
-    """
-    # Проверяем, нет ли уже шага с таким id
-    existing = db.query(Step).filter(Step.id == id).first()
-    if existing:
-        return {"error": "Step with this ID already exists"}
-    
-    step = Step(
-        id=id,
-        title=title,
-        icon=icon,
-        order=order
-    )
-    db.add(step)
-    db.commit()
-    db.refresh(step)
-    return step
-
-@app.post("/api/steps")
-def create_step(
-    id: int,
-    title: str,
-    icon: str,              # ← Сначала БЕЗ default
-    title_en: str = None,   # ← Потом С default
-    order: int = 0,         # ← Потом С default
-    db: Session = Depends(get_db)
-):
-    """
-    POST /api/steps
-    Создает новый шаг адаптации
-    """
     # Проверяем, нет ли уже шага с таким id
     existing = db.query(Step).filter(Step.id == id).first()
     if existing:

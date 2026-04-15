@@ -1,11 +1,13 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
+from typing import List, Optional
+from pydantic import BaseModel
+
 from database import engine, Base, SessionLocal
 from models import Building, Room, Step, Article
-from schemas import BuildingCreate, Building as BuildingSchema, StepCreate, Step as StepSchema
-from fastapi.middleware.cors import CORSMiddleware
 
-# 🔥 Создаём таблицы
+# Создаём таблицы
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Navigator API")
@@ -19,6 +21,38 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Pydantic схемы ПРЯМО ЗДЕСЬ (проще так)
+class BuildingBase(BaseModel):
+    name: str
+    address: str
+    lat: float
+    lon: float
+
+class BuildingCreate(BuildingBase):
+    pass
+
+class BuildingResponse(BuildingBase):
+    id: int
+    
+    class Config:
+        orm_mode = True
+
+class StepBase(BaseModel):
+    title: str
+    icon: str
+    order: int = 0
+
+class StepCreate(StepBase):
+    id: int
+    title_en: Optional[str] = None
+
+class StepResponse(StepBase):
+    id: int
+    title_en: Optional[str] = None
+    
+    class Config:
+        orm_mode = True
+
 # Зависимость БД
 def get_db():
     db = SessionLocal()
@@ -30,57 +64,47 @@ def get_db():
 # Health check
 @app.get("/health")
 def health_check():
-    return {"status": "ok", "message": "Server is running"}
+    return {"status": "ok"}
 
 # Получить все корпуса
-@app.get("/api/buildings", response_model=list[BuildingSchema])
+@app.get("/api/buildings", response_model=List[BuildingResponse])
 def get_buildings(db: Session = Depends(get_db)):
-    buildings = db.query(Building).all()
-    return buildings
+    return db.query(Building).all()
 
 # Добавить корпус
-@app.post("/api/buildings", response_model=BuildingSchema)
+@app.post("/api/buildings", response_model=BuildingResponse)
 def create_building(building: BuildingCreate, db: Session = Depends(get_db)):
-    new_building = Building(
-        name=building.name,
-        address=building.address,
-        lat=building.lat,
-        lon=building.lon
-    )
-    db.add(new_building)
+    db_building = Building(**building.dict())
+    db.add(db_building)
     db.commit()
-    db.refresh(new_building)
-    return new_building
+    db.refresh(db_building)
+    return db_building
 
 # Получить все шаги
-@app.get("/api/steps", response_model=list[StepSchema])
+@app.get("/api/steps", response_model=List[StepResponse])
 def get_steps(db: Session = Depends(get_db)):
-    steps = db.query(Step).order_by(Step.order).all()
-    return steps
+    return db.query(Step).order_by(Step.order).all()
 
 # Получить статьи шага
 @app.get("/api/steps/{step_id}/articles")
 def get_step_articles(step_id: int, db: Session = Depends(get_db)):
-    articles = db.query(Article).filter(
-        Article.step_id == step_id
-    ).order_by(Article.order).all()
-    return articles
+    return db.query(Article).filter(Article.step_id == step_id).order_by(Article.order).all()
 
 # Добавить шаг
-@app.post("/api/steps", response_model=StepSchema)
+@app.post("/api/steps", response_model=StepResponse)
 def create_step(step: StepCreate, db: Session = Depends(get_db)):
     existing = db.query(Step).filter(Step.id == step.id).first()
     if existing:
-        return {"error": "Step with this ID already exists"}
+        raise HTTPException(status_code=400, detail="Step with this ID already exists")
     
-    new_step = Step(
+    db_step = Step(
         id=step.id,
         title=step.title,
         title_en=step.title_en,
         icon=step.icon,
         order=step.order
     )
-    db.add(new_step)
+    db.add(db_step)
     db.commit()
-    db.refresh(new_step)
-    return new_step
+    db.refresh(db_step)
+    return db_step

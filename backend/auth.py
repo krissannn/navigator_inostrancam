@@ -7,6 +7,7 @@ from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 import os
+from database import get_db
 
 # 🔑 Читаем SECRET_KEY из Render Environment Variables
 SECRET_KEY = os.getenv("SECRET_KEY", "fallback-dev-key-not-for-production")

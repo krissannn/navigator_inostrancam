@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, Float, ForeignKey, Text
 from sqlalchemy.orm import relationship
 from database import Base
+from sqlalchemy import Boolean
 
 class Building(Base):
     __tablename__ = "buildings"
@@ -74,3 +75,13 @@ class Article(Base):
     
     # Связь: статья → шаг
     step = relationship("Step", back_populates="articles")
+# ... другие импорты
+
+class User(Base):
+    __tablename__ = "users"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    email = Column(String, unique=True, index=True, nullable=False)
+    username = Column(String, unique=True, nullable=False)
+    hashed_password = Column(String, nullable=False)
+    is_active = Column(Boolean, default=True)

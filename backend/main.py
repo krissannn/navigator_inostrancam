@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from typing import List, Optional
 from pydantic import BaseModel
 
-from database import engine, Base, SessionLocal
+from database import engine, Base, SessionLocal, get_db
 from models import Building as DBBuilding, Room, Step as DBStep, Article
 
 # Создаём таблицы при первом запросе
@@ -57,18 +57,7 @@ class StepCreate(StepBase):
 class StepResponse(StepBase):
     id: int
     title_en: Optional[str] = None
-
-# =============================================================================
-# ЗАВИСИМОСТИ
-# =============================================================================
-def get_db():
-    create_tables_if_needed()
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
+    
 # =============================================================================
 # ENDPOINTS
 # =============================================================================

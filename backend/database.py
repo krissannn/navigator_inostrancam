@@ -18,3 +18,14 @@ if not database_url:
 engine = create_engine(database_url)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
+
+# =============================================================================
+# ЗАВИСИМОСТЬ для подключения к БД (теперь здесь!)
+# =============================================================================
+def get_db():
+    """Получить сессию базы данных"""
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

@@ -22,8 +22,13 @@
     border: none;
     color: var(--white-color);
     font-size: 1rem;
+    text-decoration: none;
     &:hover {
       background-color: var(--blue-2-color);
     }
+  }
+
+  &__link {
+    text-decoration: none;
   }
 }

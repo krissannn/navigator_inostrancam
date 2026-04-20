@@ -27,15 +27,18 @@ function Registration() {
       )
 
       if (!response.ok) throw new Error('Error!!!!!')
-      setName("")
-      setEmail("")
-      setPassword("")
-      setCountry("")
       navigate("/login")
     }
 
     catch(err) {
       console.log("Something went wrong!")
+    }
+
+    finally {
+      setName("")
+      setEmail("")
+      setPassword("")
+      setCountry("")
     }
   }
   

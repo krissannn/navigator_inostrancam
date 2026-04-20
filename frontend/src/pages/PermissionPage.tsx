@@ -13,7 +13,7 @@ function PermissionPage({pageData}: PermissionPageProps) {
 
   return (
     <>
-      <BasePage pageData={pageData} />
+      <BasePage/>
     </>
   )
 }

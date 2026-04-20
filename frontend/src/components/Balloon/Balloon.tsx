@@ -1,6 +1,6 @@
 // components/BalloonContent.jsx
 
-import type { Point } from '../../points';
+import type { Point } from '../../DB/points';
 import styles from './Styles.module.scss'; 
 
 interface BalloonContentProps {
@@ -28,20 +28,6 @@ const BalloonContent = ({ point, totalPoints }: BalloonContentProps) => {
         <div className={styles.description}>
           {point.description}
         </div>
-        
-        <div className={styles.tips}>
-          <strong>💡 Советы:</strong>
-          <ul>
-            {point.tips.map((tip, ind) => (
-              <li key={ind}>{tip}</li>
-            ))}
-          </ul>
-        </div>
-        
-        <button 
-          className={styles.routeButton}
-          onClick={() => window.open(`https://maps.yandex.ru/?text=${point.coords[0]},${point.coords[1]}`, '_blank')}
-        >Построить маршрут</button>
       </div>
     </>
   );

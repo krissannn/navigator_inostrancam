@@ -5,7 +5,8 @@ export const buildings = [
     "address": "Екатеринбург, ул. Бахчиванджи, 1",
     "lat": 56.750475,
     "lon": 60.801570,
-    "type": "close"
+    "type": "close",
+    "step_id": 0
   },
   {
     "id": 2,
@@ -13,7 +14,8 @@ export const buildings = [
     "address": "Челябинская область, Троицкий район, трасса А-310, 145-й километр, 310",
     "lat": 56.8400,
     "lon": 60.6100,
-    "type": "close"
+    "type": "close",
+    "step_id": 0
   },
   {
     "id": 3,
@@ -21,7 +23,8 @@ export const buildings = [
     "address": "Курганская область, г. Петухово, ул. Южная, 2",
     "lat": 55.091404, 
     "lon": 68.242960,
-    "type": "close"
+    "type": "close",
+    "step_id": 0
   },
   {
     "id": 4,
@@ -29,7 +32,8 @@ export const buildings = [
     "address": "Омская область, г. Исилькуль, ул. Железнодорожная, 1",
     "lat": 54.921873,
     "lon":  71.016388,
-    "type": "close" 
+    "type": "close",
+    "step_id": 0 
   },
   {
     "id": 5,
@@ -37,7 +41,8 @@ export const buildings = [
     "address": "100600, г. Пекин, р-н Дунчэн, ул. Дунчжимэньнэй Бэйчжунцзе, 4",
     "lat": 39.944435, 
     "lon":  116.422595,
-    "type": "long" 
+    "type": "long",
+    "step_id": 0 
   },
   {
     "id": 6,
@@ -45,7 +50,8 @@ export const buildings = [
     "address": "200080, г. Шанхай, р-н Хункоу, ул. Хуанпу, 20",
     "lat": 31.245814, 
     "lon":  121.486569,
-    "type": "long" 
+    "type": "long",
+    "step_id": 0 
   },
   {
     "id": 7,
@@ -53,7 +59,8 @@ export const buildings = [
     "address": "510623, г. Гуанчжоу, р-н Тяньхэ, пр-т Линьцзян Дадао, 3",
     "lat": 31.245814, 
     "lon":  121.486569,
-    "type": "long" 
+    "type": "long",
+    "step_id": 0 
   },
   {
     "id": 8,
@@ -61,7 +68,8 @@ export const buildings = [
     "address": "Shantipath, Chanakyapuri, New Delhi, 110021",
     "lat": 28.593228,  
     "lon":  77.187117,
-    "type": "long" 
+    "type": "long",
+    "step_id": 0 
   },
   {
     "id": 9,
@@ -69,7 +77,8 @@ export const buildings = [
     "address": "95, Giza St., Giza, Cairo",
     "lat": 30.037889, 
     "lon":  31.219455 ,
-    "type": "long" 
+    "type": "long",
+    "step_id": 0 
   },
   {
     "id": 10,
@@ -77,6 +86,75 @@ export const buildings = [
     "address": "Andrey Karlov st., 5, 06692, Cankaya (Ankara)",
     "lat": 39.893802,  
     "lon":  32.852636,
-    "type": "long" 
+    "type": "long",
+    "step_id": 0 
   },
+
+
+  {
+    "id": 11,
+    "name": "МФЦ",
+    "address": "ул. 8 Марта, 13",
+    "advice": "Самый крупный, удобно ехать на трамвае от УрФУ",
+    "lat": 56.836401, 
+    "lon": 60.600349,
+    "step_id": 1,
+    "type": "mfc"
+  },
+  {
+    "id": 12,
+    "name": "МФЦ",
+    "address": "ул. Бажова, 162",
+    "advice": "Совсем рядом с ГУКом",
+    "lat": 56.831398, 
+    "lon": 60.628996,
+    "step_id": 1,
+    "type": "mfc"
+  },
+  {
+    "id": 13,
+    "name": "МФЦ",
+    "address": "ул. Карла Либкнехта, 2",
+    "advice": "В центре, удобно совместить с прогулкой",
+    "lat": 56.836145, 
+    "lon": 60.612925,
+    "step_id": 1,
+    "type": "mfc"
+  },
+
+
+
+
+  {
+    "id": 14,
+    "name": "Сбербанк",
+    "address": "ул. Мира, 19",
+    "advice": "Это идеальный вариант. График: Пн – Пт: 09:00 – 17:00.",
+    "lat": 56.844033,  
+    "lon": 60.654077,
+    "step_id": 1,
+    "type": "bank"
+  },
+  {
+    "id": 15,
+    "name": "Банк Синара",
+    "address": "ул. Мира, 19, правое крыло",
+    "advice": "Близко и быстро. График: Пн – Пт: 09:00 – 19:00; Сб: 10:00 – 16:00.",
+    "lat": 56.84399,  
+    "lon": 60.654077,
+    "step_id": 1,
+    "type": "bank"
+  },
+  {
+    "id": 16,
+    "name": "Газпромбанк",
+    "address": "ул. Гагарина, 17",
+    "advice": "Буквально через дорогу от ГУКа. График: Пн – Пт: 09:00 – 19:00.",
+    "lat": 56.848188, 
+    "lon": 60.644384,
+    "step_id": 1,
+    "type": "bank"
+  },
+
+
 ]

@@ -22,14 +22,16 @@ function Login() {
       )
 
       if (!response.ok) throw new Error("Error")
-      setLogin("")
-      setPassword("")
       navigate("/")
     }
   catch(err) {
     console.log('Incorrect username or password')
   }
+  finally {
+    setLogin("")
+    setPassword("")
   }
+}
 
   return (
     <div className={styles.container}>

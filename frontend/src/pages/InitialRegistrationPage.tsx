@@ -10,7 +10,7 @@ function InitialRegistrationPage({pageData}: InitialRegistrationPageProps){
 
   return (
     <>
-      <BasePage pageData={pageData}/>
+      <BasePage/>
     </>
   )
 }

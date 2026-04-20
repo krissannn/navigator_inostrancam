@@ -11,7 +11,7 @@ function DormitoryPage({pageData}: DormitoryPageProps) {
 
   return (
     <> 
-      <BasePage pageData={pageData}/>
+      <BasePage/>
     </>
 )
 }

@@ -1,0 +1,104 @@
+
+.container {
+  display: grid;
+  grid-template-columns: 450px 2fr;
+  height: 90vh;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 60px;
+  overflow: hidden;
+  gap: 20px;
+  padding-bottom: 100px;
+
+  &__info {
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &__buttons {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__checklist {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+  }
+
+  // Планшеты и ноутбуки
+  @media (max-width: 1200px) {
+    grid-template-columns: 380px 1.5fr;
+    width: 95%;
+  }
+
+  // Планшеты вертикальные
+  @media (max-width: 992px) {
+    grid-template-columns: 300px 1.5fr;
+    gap: 15px;
+  }
+
+  // Мобильные устройства
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    padding-top: 20px;
+    
+    &__info {
+      order: 2; // Панель снизу
+      max-height: 40vh;
+      min-height: 200px;
+      margin-bottom: 10px;
+    }
+    
+    &__map {
+      order: 1; // Карта сверху
+      height: 55vh;
+      min-height: 300px;
+      margin-bottom: 10px;
+    }
+  }
+
+  // Маленькие мобильные
+  @media (max-width: 480px) {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    gap: 10px;
+    
+    &__info {
+      max-height: 35vh;
+    }
+    
+    &__map {
+      height: 50vh;
+    }
+  }
+}
+
+// Опционально: ландшафтная ориентация на мобильных
+@media (max-width: 768px) and (orientation: landscape) {
+  .container {
+    flex-direction: row;
+    height: 85vh;
+    
+    &__info {
+      width: 35%;
+      max-height: 100%;
+      order: 1;
+    }
+    
+    &__map {
+      width: 63%;
+      height: 100%;
+      order: 2;
+    }
+  }
+}

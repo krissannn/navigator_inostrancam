@@ -1,16 +1,18 @@
 import classes from "./Styles.module.scss"
 
-
 interface ButtonProps {
-  onClick: () => void
+  src?: string,
+  content?: string,
+  onClick?: () => void
 }
 
-function Button({onClick}: ButtonProps) {
+function Button({src, content, onClick}: ButtonProps) {
   return (
     <>
     
-      <button className={classes.button} type="button" onClick={onClick}>
-        <img src="../../src/assets/arrow_back.svg" />
+      <button className={classes.button} onClick={onClick} type="button">
+        <img src={src} />
+        {content && <span>{content}</span>}
       </button>
     </>
   )

@@ -1,5 +1,6 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 from typing import List, Optional
 from pydantic import BaseModel
@@ -20,7 +21,16 @@ def create_tables_if_needed():
         Base.metadata.create_all(bind=engine)
         tables_created = True
 
-app = FastAPI(title="Navigator API")
+# =============================================================================
+# НАСТРОЙКА БЕЗОПАСНОСТИ ДЛЯ SWAGGER
+# =============================================================================
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
+
+app = FastAPI(
+    title="Navigator API",
+    description="API для системы адаптации иностранных студентов",
+    version="1.0.0"
+)
 
 # CORS
 app.add_middleware(

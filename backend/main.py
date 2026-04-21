@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from sqlalchemy.orm import Session
 from typing import List, Optional
 from pydantic import BaseModel
@@ -23,7 +24,9 @@ def create_tables_if_needed():
 app = FastAPI(
     title="Navigator API",
     description="API для системы адаптации иностранных студентов",
-    version="1.0.0"
+    version="1.0.0",
+    docs_url="/docs",
+    openapi_url="/openapi.json"
 )
 
 # CORS
@@ -34,6 +37,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Security scheme для Swagger
+security = HTTPBearer(auto_error=False)
 
 # =============================================================================
 # PYDANTIC SCHEMAS
@@ -81,30 +87,6 @@ class ArticleCreate(ArticleBase):
 class ArticleResponse(ArticleBase):
     id: int
     step_id: int
-
-# =============================================================================
-# CUSTOM OPENAPI SCHEMA (чтобы исправить авторизацию в Swagger)
-# =============================================================================
-def custom_openapi():
-    if app.openapi_schema:
-        return app.openapi_schema
-    
-    openapi_schema = app.openapi()
-    
-    # Добавляем Bearer Auth схему
-    openapi_schema["components"]["securitySchemes"] = {
-        "BearerAuth": {
-            "type": "http",
-            "scheme": "bearer",
-            "bearerFormat": "JWT",
-            "description": "Введите токен в формате: Bearer <ваш_токен>"
-        }
-    }
-    
-    app.openapi_schema = openapi_schema
-    return app.openapi_schema
-
-app.openapi = custom_openapi
 
 # =============================================================================
 # AUTH ENDPOINTS

@@ -4,7 +4,7 @@
 import './Styles.scss'
 import { BrowserRouter, } from 'react-router'
 
-import AppRouter from '../Routes/AppRouter.tsx'
+import AppRouter from '../routes/AppRouter.tsx'
 
 function App() {
 

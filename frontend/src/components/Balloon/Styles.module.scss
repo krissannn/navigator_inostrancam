@@ -1,0 +1,62 @@
+// components/BalloonContent.module.scss
+.container {
+  max-width: 320px;
+  padding: 16px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  
+  &__step {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 12px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+}
+
+.title {
+  margin: 0 0 8px 0;
+  color: #1a73e8;
+  font-size: 20px;
+}
+
+.address {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.duration {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: #ff9800;
+}
+
+.description {
+  margin: 12px 0;
+  padding: 12px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  white-space: pre-line;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.routeButton {
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 14px;
+  font-weight: bold;
+  
+  &:hover {
+    background: #45a049;
+  }
+}

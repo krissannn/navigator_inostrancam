@@ -8,7 +8,7 @@ function Header({setLanguage}: {setLanguage: (language: string) => void}) {
   return (
     <header className={styles.header}>
       <Select setLanguage={setLanguage} />
-      <Link to="/login">   
+      <Link className={styles.header__link} to="/login">   
         <button className={styles.header__button} type="button">Войти</button>
       </Link>
 

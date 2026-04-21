@@ -1,0 +1,138 @@
+// Panel.module.scss
+.markdownContent {
+  // Основные стили для всего контента
+  font-family: 'Roboto',  sans-serif;
+  line-height: 1.6;
+  color: #1a1a1a;
+  padding: 15px;
+  
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 20px 0 16px;
+    color: #0d4789;
+    border-bottom: 2px solid #0d4789;
+    padding-bottom: 8px;
+    
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  
+  h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 20px 0 12px;
+    color: #1a5ba8;
+  }
+  
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 16px 0 10px;
+    color: #2c6fb0;
+  }
+  
+  // Параграфы
+  p {
+    margin: 12px 0;
+    line-height: 1.7;
+  }
+  
+  // Цитаты (для важных заметок)
+  blockquote {
+    margin: 16px 0;
+    padding: 12px 20px;
+    background: #e8f0fe;
+    border-left: 4px solid #0d4789;
+    border-radius: 8px;
+    font-style: italic;
+    color: #0d4789;
+    
+    p {
+      margin: 0;
+    }
+  }
+  
+  // Списки
+  ul, ol {
+    margin: 12px 0;
+    padding-left: 24px;
+    
+    li {
+      margin: 8px 0;
+      list-style: none;
+    }
+  }
+  
+  // Жирный текст
+  strong {
+    color: #0d4789;
+    font-weight: 700;
+  }
+  
+  // Курсив
+  em {
+    font-style: italic;
+    color: #555;
+  }
+  
+  // Горизонтальная линия
+  hr {
+    margin: 24px 0;
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, #0d4789, transparent);
+  }
+  
+  // Ссылки
+  a {
+    color: #0d4789;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+    
+    &:hover {
+      border-bottom-color: #0d4789;
+    }
+  }
+  
+  // Таблицы (если используете)
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    
+    th {
+      background: #f0f0f0;
+      font-weight: 600;
+    }
+  }
+  
+  // Код
+  code {
+    background: #f4f4f4;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+  }
+  
+  pre {
+    background: #f4f4f4;
+    padding: 12px;
+    border-radius: 8px;
+    overflow-x: auto;
+    
+    code {
+      background: none;
+      padding: 0;
+    }
+  }
+}

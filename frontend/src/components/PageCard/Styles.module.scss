@@ -2,25 +2,23 @@
 
 
 .page_card {
+  background-color: rgba(30, 67, 145, 0.3);
   margin: 0 auto;
-  width: 60%;
-  background-color: white;
   border-radius: 20px;
   padding: 15px;
+  margin: 15px;
 
   &:hover {
     cursor: pointer;
-    transform: rotate(360);
   }
 }
-
 
 .page_card_img {
   width: 50px;
   color: white;
   background-color: rgb(13, 71, 137);
   border-radius: 10px;
-  padding: 0px;
+  padding: 10px;
 }
 
 .page_card_counter {

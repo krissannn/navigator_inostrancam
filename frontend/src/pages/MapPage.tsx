@@ -10,7 +10,7 @@ function MapPage({pageData}: MapPageProps) {
 
   return (
     <>
-      <BasePage pageData={pageData} />
+      <BasePage/>
     </>
   )
   

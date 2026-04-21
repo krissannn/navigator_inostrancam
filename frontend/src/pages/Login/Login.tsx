@@ -1,17 +1,37 @@
 import styles from './Styles.module.scss'
 import { useState, type FormEvent } from 'react'
+import { Link, useNavigate } from 'react-router'
 
-function LoginComponent() {
+function Login() {
 
   const [login, setLogin] = useState("")
   const [password, setPassword] = useState("")
 
+  const navigate = useNavigate()
 
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault()
-    console.log(login)
-    console.log(password)
+    
+    try {
+      const response = await fetch("https://navigator-api-vsxn.onrender.com/api/auth/login",
+      {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({login, password})
+      }
+      )
+
+      if (!response.ok) throw new Error("Error")
+      navigate("/")
+    }
+  catch(err) {
+    console.log('Incorrect username or password')
   }
+  finally {
+    setLogin("")
+    setPassword("")
+  }
+}
 
   return (
     <div className={styles.container}>
@@ -37,11 +57,13 @@ function LoginComponent() {
           onChange={(evt) => setPassword(evt.target.value)}
           required 
         />
-
+ 
         <button type='submit' className={styles.container__button}>Войти</button>
+        <p className={styles.container__footer}>Нет аккаунта? <Link className={styles.container__footer_link} to="/registration">Регистрация</Link></p>
+
       </form>
     </div>
   )
 }
 
-export const Login = LoginComponent
+export default Login

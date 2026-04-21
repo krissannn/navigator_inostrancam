@@ -11,7 +11,7 @@ function DocumentsPage({pageData}: DocumentsPageProps) {
 
   return (
     <>
-      <BasePage pageData={pageData}/>
+      <BasePage/>
     </>
   )
 }

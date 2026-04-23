@@ -1,9 +1,9 @@
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from sqlalchemy.orm import Session
 from typing import List, Optional
 from pydantic import BaseModel
+from datetime import datetime
 
 from database import engine, Base, SessionLocal, get_db
 from models import Building as DBBuilding, Room, Step as DBStep, Article, User
@@ -24,9 +24,7 @@ def create_tables_if_needed():
 app = FastAPI(
     title="Navigator API",
     description="API для системы адаптации иностранных студентов",
-    version="1.0.0",
-    docs_url="/docs",
-    openapi_url="/openapi.json"
+    version="1.0.0"
 )
 
 # CORS
@@ -37,9 +35,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Security scheme для Swagger
-security = HTTPBearer(auto_error=False)
 
 # =============================================================================
 # PYDANTIC SCHEMAS
@@ -103,7 +98,7 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
     db_user = User(
         email=user.email,
         username=user.username,
-        hashed_password=get_password_hash(user.password)
+        hashed_password=get_password_hash(user.password),
         country=user.country
     )
     db.add(db_user)
@@ -143,7 +138,7 @@ def get_buildings(db: Session = Depends(get_db)):
 def create_building(
     building: BuildingCreate,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)  # 🔐 Защищено!
+    current_user: User = Depends(get_current_user)
 ):
     db_building = DBBuilding(**building.dict())
     db.add(db_building)
@@ -160,7 +155,7 @@ def get_steps(db: Session = Depends(get_db)):
 def create_step(
     step: StepCreate,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)  # 🔐 Защищено!
+    current_user: User = Depends(get_current_user)
 ):
     existing = db.query(DBStep).filter(DBStep.id == step.id).first()
     if existing:
@@ -180,7 +175,7 @@ def get_step_articles(step_id: int, db: Session = Depends(get_db)):
 def create_article(
     article: ArticleCreate,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)  # 🔐 Защищено!
+    current_user: User = Depends(get_current_user)
 ):
     db_article = Article(**article.dict())
     db.add(db_article)
@@ -193,7 +188,7 @@ def update_article(
     article_id: int,
     article: ArticleCreate,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)  # 🔐 Защищено!
+    current_user: User = Depends(get_current_user)
 ):
     db_article = db.query(Article).filter(Article.id == article_id).first()
     if not db_article:
@@ -210,7 +205,7 @@ def update_article(
 def delete_article(
     article_id: int,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)  # 🔐 Защищено!
+    current_user: User = Depends(get_current_user)
 ):
     db_article = db.query(Article).filter(Article.id == article_id).first()
     if not db_article:

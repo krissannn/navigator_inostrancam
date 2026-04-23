@@ -64,14 +64,15 @@ class Article(Base):
     - content: "Миграционная карта — это документ..."
     - content_en: "Migration card is a document..." (английская версия)
     """
+    class Article(Base):
     __tablename__ = "articles"
     
     id = Column(Integer, primary_key=True, index=True)
     step_id = Column(Integer, ForeignKey("steps.id"))
-    title = Column(String, index=True)
-    content = Column(Text)        # Текст на русском
-    content_en = Column(Text)     # Текст на английском (опционально)
-    order = Column(Integer)       # Порядок внутри шага
+    title = Column(String, nullable=False)
+    content = Column(Text, nullable=False)  # ← Было String, стало Text
+    content_en = Column(Text)               # ← Было String, стало Text
+    order = Column(Integer, default=0)
     
     # Связь: статья → шаг
     step = relationship("Step", back_populates="articles")

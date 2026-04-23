@@ -9,6 +9,7 @@ class Building(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
     address = Column(String)
+    description = Column(Text)
     lat = Column(Float)
     lon = Column(Float)
     

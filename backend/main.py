@@ -47,6 +47,7 @@ security = HTTPBearer(auto_error=False)
 class BuildingBase(BaseModel):
     name: str
     address: str
+    description: Optional[str] = None
     lat: float
     lon: float
     class Config:

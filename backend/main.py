@@ -103,6 +103,7 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
         email=user.email,
         username=user.username,
         hashed_password=get_password_hash(user.password)
+        country=user.country
     )
     db.add(db_user)
     db.commit()

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import styles from "./Styles.module.scss";
+import { Link } from "react-router";
  
-function SuccessPopup() {
+function SuccessPopup({to}: {to: string}) {
   const [visible, setVisible] = useState(true);
  
   if (!visible) return null;
@@ -37,9 +38,11 @@ function SuccessPopup() {
           Шаг завершён ✓
         </div>
  
-        <button className={styles.popup__cta}>
-          Перейти к следующему шагу →
-        </button>
+        <Link to={to}>
+          <button className={styles.popup__cta}>
+            Перейти к следующему шагу →
+          </button>
+        </Link>
       </div>
     </div>
   );

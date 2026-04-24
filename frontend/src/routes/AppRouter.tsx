@@ -1,27 +1,25 @@
-import PlanePage from '../Pages/PlanePage/PlanePage'
+import PlanePage from '../pages/PlanePage/PlanePage'
 import { Route, Routes } from 'react-router'
 
-import MainPage from '../Pages/MainPage'
-import DocumentsPage from '../Pages/DocumentsPage'
-import DormitoryPage from '../Pages/DormitoryPage'
-import InitialCheckInPage from '../Pages/InitialCheckInPage/InitialCheckInPage'
-import InitialRegistrationPage from '../Pages/InitialRegistrationPage'
-import MapPage from '../Pages/MapPage'
-import PermissionPage from '../Pages/PermissionPage'
-import  Login  from '../Pages/Login/Login'
-import { useEffect, useState } from 'react'
+import MainPage from '../pages/MainPage/MainPage'
 
-import { RussianCardsData} from '../DB/cardsData'
-import { NotFoundPage } from '../Pages/NotFoundPage/NotFoundPage'
-import Registration from '../Pages/Registration/Registration'
+import InitialCheckInPage from '../pages/InitialCheckInPage/InitialCheckInPage'
+import LongRegistrationPage from '../pages/LongRegistrationPage/LongRegistrationPage'
+
+import  Login  from '../pages/Login/Login'
+import { useState } from 'react'
+
+import { NotFoundPage } from '../pages/NotFoundPage/NotFoundPage'
+import Registration from '../pages/Registration/Registration'
+import DormitoryPage from '../pages/DormitoryPage/DormitoryPage'
+import VNJPage from '../pages/VNJPage/VNJPage'
 
 
+// const API_URL = import.meta.env.VITE_API_URL
 
 function AppRouter() {
 
   const [language, setLanguage] = useState("Russian")
-  const [cardsData, setCardsData] = useState(RussianCardsData)
-
 
 
   // useEffect(() => {
@@ -38,13 +36,11 @@ function AppRouter() {
 
   const navigationRoutes = [
     {path: "/", page: <MainPage setLanguage={setLanguage}/>},
-    {path: "/plane", page: <PlanePage pageData={cardsData[0]}/>},
-    {path: "/check-in", page: <InitialCheckInPage pageData={cardsData[1]}/>},
-    {path: "/dorm", page: <DormitoryPage pageData={cardsData[2]}/>},
-    {path: "/initial-registration", page: <InitialRegistrationPage pageData={cardsData[3]}/>},
-    {path: "/docs", page: <DocumentsPage pageData={cardsData[4]}/>},
-    {path: "/map", page: <MapPage pageData={cardsData[5]}/>},
-    {path: "/permission", page: <PermissionPage pageData={cardsData[6]}/>},
+    {path: "/plane", page: <PlanePage/>},
+    {path: "/check-in", page: <InitialCheckInPage />},
+    {path: "/dorm", page: <DormitoryPage />},
+    {path: "/long-registration", page: <LongRegistrationPage/>},
+    {path: "/vnj", page: <VNJPage />},
     {path: "/login", page: <Login />},
     {path: "/registration", page: <Registration />},
     {path: "/*", page: <NotFoundPage/>}

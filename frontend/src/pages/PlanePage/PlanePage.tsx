@@ -13,6 +13,8 @@ import Checklist from "../../components/Checklist/Checklist"
 import SuccessPopup from "../../Popups/SuccessPopup/SuccessPopup"
 import Loading from "../../components/Loading/Loading"
 
+import plane from "../../assets/plane.svg"
+
 const API_URL = import.meta.env.VITE_API_URL
 
 function PlanePage() {
@@ -45,7 +47,7 @@ function PlanePage() {
       <BasePage/>
       <InfoMap features={[closeGeoJSON, longGeoJSON]} presets={["islands#blueDotIcon", "islands#redDotIcon"]} zoom={4}>
         <div className={styles.container__info}>
-          <PageCard step_id={steps[0].step_id} title={steps[0].title} icon_link={steps[0].icon_link} />
+          <PageCard step_id={info.step_id} title={info.title} icon_link={plane} />
 
           <h3 className={styles.container__subtitle}>Выбери, откуда ты</h3>
           <div className={styles.container__buttons}>

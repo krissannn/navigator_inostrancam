@@ -5,11 +5,11 @@ import styles from "./Styles.module.scss"
 import { steps } from "../../DB/points"
 import { bankGeoJSON, mfcGeoJSON } from "../../utils/placeGeneration"
 import InfoPanel from "../../components/InfoPanel/InfoPanel"
-import { use, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import Loading from "../../components/Loading/Loading"
 import SuccessPopup from "../../Popups/SuccessPopup/SuccessPopup"
 import Checklist from "../../components/Checklist/Checklist"
-
+import motorcycle from "../../assets/motorcycle.svg"
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -37,14 +37,16 @@ function InitialCheckInPage() {
     <>
        {loading && <Loading/>}
 
-      {isVisible && <SuccessPopup to={"/check-in"}/>}
+      {isVisible && <SuccessPopup to={"/dorm"}/>}
 
       <BasePage />
-      <InfoMap features={[mfcGeoJSON, bankGeoJSON]} presets={["islands#purpleDotIcon", "islands#greenHomeIcon"]} zoom={11}>
+      <InfoMap features={[mfcGeoJSON, bankGeoJSON]} presets={["islands#purpleDotIcon", "islands#greenMoneyIcon"]} zoom={11}>
         <div className={styles.container__info}>
-          <PageCard step_id={steps[1].step_id} title={steps[1].title} icon_link={steps[1].icon_link} />
+          <PageCard step_id={info.step_id} title={info.title} icon_link={motorcycle} />
           <InfoPanel description={info.content} />
-          <Checklist checklist={info.checklist} setIsVisible={setIsVisible}/>
+          {info.checklist && info.checklist.length > 0 && (
+              <Checklist checklist={info.checklist} setIsVisible={setIsVisible}/>
+            )}
         </div>
       </InfoMap>
     </>

@@ -4,8 +4,8 @@ import { type ReactNode } from "react";
 
 
 type InfoMapProps = {
-  features: any, //FeatureCollection[], если установили @types/geojson
-  presets: string[],
+  features?: any, //FeatureCollection[], если установили @types/geojson
+  presets?: string[],
   zoom: number,
   children: ReactNode
 }
@@ -39,7 +39,7 @@ function InfoMap({ features, presets, zoom, children }: InfoMapProps) {
             className={styles.map} 
             defaultState={{center: [56.837435, 60.597636], zoom: zoom}}
           >
-            {renderPlacemarks()}
+            {features && renderPlacemarks()}
           </Map>
         </YMaps>
       </div>

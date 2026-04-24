@@ -13,6 +13,7 @@ import { NotFoundPage } from '../pages/NotFoundPage/NotFoundPage'
 import Registration from '../pages/Registration/Registration'
 import DormitoryPage from '../pages/DormitoryPage/DormitoryPage'
 import VNJPage from '../pages/VNJPage/VNJPage'
+import FaqPage from '../pages/FAQ/FaqPage'
 
 
 // const API_URL = import.meta.env.VITE_API_URL
@@ -41,6 +42,7 @@ function AppRouter() {
     {path: "/dorm", page: <DormitoryPage />},
     {path: "/long-registration", page: <LongRegistrationPage/>},
     {path: "/vnj", page: <VNJPage />},
+    {path: "/faq", page: <FaqPage />},
     {path: "/login", page: <Login />},
     {path: "/registration", page: <Registration />},
     {path: "/*", page: <NotFoundPage/>}

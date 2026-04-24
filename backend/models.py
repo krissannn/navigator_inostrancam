@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, ForeignKey, Text, Boolean, DateTime
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, Text, Boolean, DateTime, JSONB
 from sqlalchemy.orm import relationship
 from database import Base
 from datetime import datetime
@@ -59,6 +59,7 @@ class Article(Base):
     content = Column(Text, nullable=False)
     content_en = Column(Text)
     order = Column(Integer, default=0)
+    checklist = Column(JSONB, nullable=True)
     
     step = relationship("Step", back_populates="articles")
 

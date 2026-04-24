@@ -2,8 +2,9 @@ import { YMaps, Map, ObjectManager } from "@pbe/react-yandex-maps";
 import styles from "./Styles.module.scss"
 import { type ReactNode } from "react";
 
+
 type InfoMapProps = {
-  features: any[],  // или FeatureCollection[] если установили @types/geojson
+  features: any, //FeatureCollection[], если установили @types/geojson
   presets: string[],
   zoom: number,
   children: ReactNode

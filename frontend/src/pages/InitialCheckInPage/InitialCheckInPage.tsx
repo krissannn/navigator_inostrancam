@@ -1,7 +1,7 @@
 import InfoMap from "../../components/InfoMap/InfoMap"
 import PageCard from "../../components/PageCard/PageCard"
 import type { CardDataElement } from "../../DB/cardsData"
-import BasePage from "../BasePage"
+import BasePage from "../BasePage/BasePage"
 import styles from "./Styles.module.scss"
 import { steps } from "../../DB/points"
 import { bankGeoJSON, mfcGeoJSON } from "../../utils/placeGeneration"

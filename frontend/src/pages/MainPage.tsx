@@ -34,7 +34,8 @@ useEffect(() => {
     <>
       <Header setLanguage={setLanguage}/>
       <Title />
-      <CardList cardsData={cards.length === 0 ? RussianCardsData : cards}/>
+      <CardList cardsData={RussianCardsData}/>
+      {/* <CardList cardsData={cards.length === 0 ? RussianCardsData : cards}/> */}
     </>
   )
 }

@@ -25,25 +25,28 @@
     justify-content: space-between;
   }
 
+  &__subtitle {
+    text-align: center;
+    color: var(--blue-color);
+  }
+
   &__checklist {
     display: flex;
     flex-direction: column;
     list-style: none;
   }
 
-  // Планшеты и ноутбуки
   @media (max-width: 1200px) {
     grid-template-columns: 380px 1.5fr;
     width: 95%;
   }
 
-  // Планшеты вертикальные
+
   @media (max-width: 992px) {
     grid-template-columns: 300px 1.5fr;
     gap: 15px;
   }
 
-  // Мобильные устройства
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
@@ -52,21 +55,20 @@
     padding-top: 20px;
     
     &__info {
-      order: 2; // Панель снизу
+      order: 2; 
       max-height: 40vh;
       min-height: 200px;
       margin-bottom: 10px;
     }
     
     &__map {
-      order: 1; // Карта сверху
+      order: 1; 
       height: 55vh;
       min-height: 300px;
       margin-bottom: 10px;
     }
   }
 
-  // Маленькие мобильные
   @media (max-width: 480px) {
     width: 100%;
     padding-left: 10px;
@@ -83,22 +85,3 @@
   }
 }
 
-// Опционально: ландшафтная ориентация на мобильных
-@media (max-width: 768px) and (orientation: landscape) {
-  .container {
-    flex-direction: row;
-    height: 85vh;
-    
-    &__info {
-      width: 35%;
-      max-height: 100%;
-      order: 1;
-    }
-    
-    &__map {
-      width: 63%;
-      height: 100%;
-      order: 2;
-    }
-  }
-}

@@ -1,18 +1,30 @@
 // Panel.module.scss
 .markdownContent {
-  // Основные стили для всего контента
-  font-family: 'Roboto',  sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-size: clamp(14px, 4vw, 16px);
   line-height: 1.6;
-  color: #1a1a1a;
-  padding: 15px;
+  color: #1a1a2e;
+  padding: clamp(16px, 4vw, 24px);
   
+  // Заголовки
   h1 {
-    font-size: 28px;
+    font-size: clamp(24px, 5vw, 32px);
     font-weight: 700;
-    margin: 20px 0 16px;
+    margin: 32px 0 20px;
     color: #0d4789;
-    border-bottom: 2px solid #0d4789;
-    padding-bottom: 8px;
+    border-bottom: 3px solid #0d4789;
+    padding-bottom: 12px;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #0d4789, #4a90e2);
+    }
     
     &:first-child {
       margin-top: 0;
@@ -20,48 +32,169 @@
   }
   
   h2 {
-    font-size: 22px;
+    font-size: clamp(20px, 4.5vw, 26px);
     font-weight: 600;
-    margin: 20px 0 12px;
+    margin: 28px 0 16px;
     color: #1a5ba8;
+    padding-left: 12px;
+    border-left: 4px solid #0d4789;
+    
+    &::before {
+      content: '#';
+      color: #0d4789;
+      margin-right: 8px;
+      opacity: 0.5;
+    }
   }
   
   h3 {
-    font-size: 18px;
+    font-size: clamp(18px, 4vw, 22px);
     font-weight: 600;
-    margin: 16px 0 10px;
+    margin: 24px 0 12px;
     color: #2c6fb0;
+    
+    &::before {
+      content: '▸';
+      color: #0d4789;
+      margin-right: 8px;
+      display: inline-block;
+    }
+  }
+  
+  h4 {
+    font-size: clamp(16px, 3.5vw, 18px);
+    font-weight: 600;
+    margin: 20px 0 10px;
+    color: #3d7ec9;
   }
   
   // Параграфы
   p {
-    margin: 12px 0;
+    margin: 16px 0;
     line-height: 1.7;
+    color: #2c3e50;
   }
   
-  // Цитаты (для важных заметок)
+  // Блоки кода
+  code {
+    font-family: 'Fira Code', 'Monaco', 'Cascadia Code', monospace;
+    font-size: 0.9em;
+    padding: 2px 6px;
+    background: #f0f2f5;
+    border-radius: 4px;
+    color: #e74c3c;
+  }
+  
+  pre {
+    background: #1e1e1e;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 20px 0;
+    overflow-x: auto;
+    position: relative;
+    
+    &::before {
+      content: 'CODE';
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 11px;
+      color: #888;
+      font-family: monospace;
+      letter-spacing: 1px;
+    }
+    
+    code {
+      background: transparent;
+      color: #d4d4d4;
+      padding: 0;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+  }
+  
+  // Цитаты
   blockquote {
-    margin: 16px 0;
-    padding: 12px 20px;
-    background: #e8f0fe;
+    margin: 20px 0;
+    padding: 16px 24px;
+    background: linear-gradient(135deg, #e8f0fe 0%, #f0f6ff 100%);
     border-left: 4px solid #0d4789;
-    border-radius: 8px;
-    font-style: italic;
-    color: #0d4789;
+    border-radius: 12px;
+    font-style: normal;
+    color: #1a5ba8;
+    position: relative;
+    
+    &::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: 12px;
+      font-size: 48px;
+      color: #0d4789;
+      opacity: 0.2;
+      font-family: serif;
+    }
     
     p {
       margin: 0;
+      position: relative;
+      z-index: 1;
     }
   }
   
   // Списки
   ul, ol {
-    margin: 12px 0;
+    margin: 16px 0;
     padding-left: 24px;
     
     li {
       margin: 8px 0;
-      list-style: none;
+      line-height: 1.6;
+      
+      &::marker {
+        color: #0d4789;
+      }
+    }
+  }
+  
+  ul {
+    list-style-type: none;
+    
+    li {
+      position: relative;
+      padding-left: 20px;
+      
+      &::before {
+        content: '●';
+        position: absolute;
+        left: 0;
+        color: #0d4789;
+        font-size: 12px;
+      }
+    }
+    
+    ul li::before {
+      content: '○';
+      font-size: 10px;
+    }
+  }
+  
+  ol {
+    list-style-type: none;
+    counter-reset: item;
+    
+    li {
+      counter-increment: item;
+      position: relative;
+      padding-left: 28px;
+      
+      &::before {
+        content: counter(item) '.';
+        position: absolute;
+        left: 0;
+        color: #0d4789;
+        font-weight: 600;
+      }
     }
   }
   
@@ -74,65 +207,200 @@
   // Курсив
   em {
     font-style: italic;
-    color: #555;
+    color: #5a6e8a;
+    background: linear-gradient(120deg, #f0f6ff 0%, #f0f6ff 40%, transparent 60%);
+    padding: 0 4px;
   }
   
   // Горизонтальная линия
   hr {
-    margin: 24px 0;
+    margin: 32px 0;
     border: none;
     height: 2px;
-    background: linear-gradient(90deg, #0d4789, transparent);
+    background: linear-gradient(90deg, #0d4789, #4a90e2, #b8d4f0, transparent);
+    border-radius: 2px;
   }
   
   // Ссылки
   a {
     color: #0d4789;
     text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s;
+    border-bottom: 2px solid rgba(13, 71, 137, 0.3);
+    transition: all 0.2s ease;
+    position: relative;
     
     &:hover {
       border-bottom-color: #0d4789;
+      color: #1a5ba8;
+      
+      &::after {
+        content: '↗';
+        position: relative;
+        margin-left: 4px;
+        font-size: 12px;
+      }
     }
   }
   
-  // Таблицы (если используете)
+  // Изображения
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+  
+  // Таблицы
   table {
     width: 100%;
     border-collapse: collapse;
-    margin: 16px 0;
+    margin: 20px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     
     th, td {
-      border: 1px solid #ddd;
-      padding: 8px 12px;
+      border: 1px solid #e0e4e8;
+      padding: 12px 16px;
       text-align: left;
     }
     
     th {
-      background: #f0f0f0;
+      background: linear-gradient(135deg, #0d4789, #1a5ba8);
+      color: white;
       font-weight: 600;
+      font-size: 0.9rem;
     }
-  }
-  
-  // Код
-  code {
-    background: #f4f4f4;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-family: 'Courier New', monospace;
-    font-size: 0.9em;
-  }
-  
-  pre {
-    background: #f4f4f4;
-    padding: 12px;
-    border-radius: 8px;
-    overflow-x: auto;
     
-    code {
-      background: none;
-      padding: 0;
+    td {
+      background: white;
     }
+    
+    tr:hover td {
+      background: #f8f9fa;
+    }
+  }
+  
+  // Чекбоксы (для задач)
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    cursor: pointer;
+    accent-color: #0d4789;
+  }
+  
+  // Зачеркнутый текст (для выполненных задач)
+  del, s {
+    color: #999;
+    text-decoration: line-through;
+  }
+  
+  // Выделение текста
+  mark {
+    background: linear-gradient(120deg, #fff3cd 0%, #fff3cd 100%);
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: #856404;
+  }
+  
+  // Подписи
+  small {
+    font-size: 0.85em;
+    color: #6c757d;
+  }
+  
+  // Кнопки в markdown
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #0d4789;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+    
+    &:hover {
+      background: #1a5ba8;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(13, 71, 137, 0.3);
+    }
+  }
+  
+  // Сноски
+  .footnote {
+    font-size: 0.85em;
+    color: #6c757d;
+    border-top: 1px solid #e0e4e8;
+    padding-top: 16px;
+    margin-top: 32px;
+  }
+  
+  // Адаптивность для мобильных устройств
+  @media (max-width: 768px) {
+    padding: 12px;
+    
+    pre {
+      font-size: 12px;
+      padding: 12px;
+      
+      &::before {
+        font-size: 9px;
+      }
+    }
+    
+    blockquote {
+      padding: 12px 16px;
+    }
+    
+    table {
+      font-size: 13px;
+      
+      th, td {
+        padding: 8px 10px;
+      }
+    }
+  }
+}
+
+// Дополнительные эффекты
+.markdownContent {
+  // Анимация появления
+  animation: fadeIn 0.5s ease;
+  
+  // Скроллбар для блоков кода
+  pre::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  pre::-webkit-scrollbar-track {
+    background: #2d2d2d;
+    border-radius: 4px;
+  }
+  
+  pre::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+    
+    &:hover {
+      background: #777;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

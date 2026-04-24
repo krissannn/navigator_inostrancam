@@ -1,63 +1,73 @@
-import { use, useState, type FormEvent } from "react"
+import { useState, type FormEvent } from "react"
 import styles from "./Styles.module.scss"
-import { useNavigate } from "react-router"
+import { Link, useNavigate } from "react-router"
+import { authService } from "../../Services/auth.service"
 
 const API_URL = import.meta.env.VITE_API_URL
 
 function Registration() {
 
-  const [name, setName] = useState<string>("")
-  const [email, setEmail] = useState<string>("")
-  const [password, setPassword] = useState<string>("")
-  const [country, setCountry] = useState<string>("")
-
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [country, setCountry] = useState("")
+  const [error, setError] = useState("") 
   const navigate = useNavigate()
-
 
   const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault()
+    setError("")
 
     try {
-      const response = await fetch(`${API_URL}/auth/register`,
-        {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({email, name, password})
+      const response = await fetch(`${API_URL}/auth/register`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({email, username, password})
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        if (errorData.detail.msg === "Incorrect username or password") {
+          throw new Error("Некорректное имя пользователя или пароль")
         }
-      )
+        else {
+          throw new Error(errorData.detail.msg || 'Ошибка регистрации')
+        }
+      }
 
-      if (!response.ok) throw new Error('Error!!!!!')
-      navigate("/login")
-    }
+      const data = await response.json()
 
-    catch(err) {
-      console.log("Something went wrong!")
-    }
-
-    finally {
-      setName("")
+      if (data.access_token) {
+        authService.setToken(data.access_token)
+        navigate("/") 
+      } else {
+        navigate("/login")
+      }
+    } catch(err) {
+      setError(err instanceof Error ? err.message : 'Ошибка регистрации')
+      console.log(err)
+    } finally {
+      setUsername("")
       setEmail("")
       setPassword("")
       setCountry("")
     }
   }
   
-
-
   return (
     <div className={styles.container}>
       <form className={styles.container__form} onSubmit={handleSubmit}>
         <div className={styles.container__header}>
           <h2 className={styles.container__title}>Регистрация</h2>
-          <img src='../../../src/assets/urfu.svg' className={styles.container__logo} alt="logo" />
+          <Link to={"/"}><img src='../../../src/assets/urfu.svg' className={styles.container__logo} alt="logo" /></Link>
         </div>
 
         <input 
           className={styles.container__input}
           placeholder='Имя'
           type="text"
-          value={name}
-          onChange={(evt) => setName(evt.target.value)}
+          value={username}
+          onChange={(evt) => setUsername(evt.target.value)}
           required 
         />
         <input 

@@ -1,38 +1,84 @@
-
-
-
 .page_card {
-  background-color: rgba(30, 67, 145, 0.3);
-  margin: 0 auto;
-  border-radius: 20px;
-  padding: 15px;
-  margin: 15px;
+  background: rgba(30, 67, 145, 0.05);
+  border-radius: clamp(16px, 4vw, 20px);
+  padding: clamp(16px, 4vw, 20px);
+  border: 1px solid rgba(30, 67, 145, 0.1);
+  max-width: 100%;
 
+  
   &:hover {
-    cursor: pointer;
+    background: rgba(30, 67, 145, 0.08);
+    border-color: rgba(30, 67, 145, 0.2);
+    box-shadow: 0 4px 12px rgba(30, 67, 145, 0.1);
   }
-}
-
-.page_card_img {
-  width: 50px;
-  color: white;
-  background-color: rgb(13, 71, 137);
-  border-radius: 10px;
-  padding: 10px;
-}
-
-.page_card_counter {
-  background-color: black;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  width: 60px;
-  text-align: center;
 }
 
 .page_card_top {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: clamp(16px, 4vw, 24px);
+  position: relative;
 }
 
+
+.page_card_img {
+  width: clamp(48px, 10vw, 60px);
+  height: clamp(48px, 10vw, 60px);
+  object-fit: contain;
+  background: linear-gradient(135deg, #0d4789, #1a5ba8);
+  border-radius: clamp(12px, 3vw, 16px);
+  padding: clamp(10px, 2.5vw, 14px);
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.page_card_content {
+  flex: 1;
+}
+
+.page_card_header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.page_card_step {
+  font-size: clamp(11px, 3vw, 12px);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #0d4789;
+  background: rgba(13, 71, 137, 0.1);
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.page_card_title {
+  font-size: clamp(16px, 4.5vw, 18px);
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.page_card_description {
+  font-size: clamp(13px, 3.5vw, 14px);
+  color: #666;
+  margin: 8px 0 0 0;
+}
+
+
+// Адаптивность для мобильных устройств
+@media (max-width: 480px) {
+  .page_card {
+    padding: 16px;
+  }
+  
+  .page_card_top {
+    gap: 12px;
+  }
+
+}

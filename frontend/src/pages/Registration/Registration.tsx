@@ -59,7 +59,7 @@ function Registration() {
       <form className={styles.container__form} onSubmit={handleSubmit}>
         <div className={styles.container__header}>
           <h2 className={styles.container__title}>Регистрация</h2>
-          <Link to={"/"}><img src='../../../src/assets/urfu.svg' className={styles.container__logo} alt="logo" /></Link>
+          <Link to={"/"}><img src='../src/assets/urfu.svg' className={styles.container__logo} alt="logo" /></Link>
         </div>
 
         <input 

@@ -1,7 +1,7 @@
-// src/services/api.ts
+
 import { authService } from './auth.service'
 
-const API_URL = "https://navigator-api-vsxn.onrender.com/api"
+const API_URL = import.meta.env.VITE_API_URL
 
 export async function authFetch(endpoint: string, options: RequestInit = {}) {
   const token = authService.getToken()
@@ -10,8 +10,7 @@ export async function authFetch(endpoint: string, options: RequestInit = {}) {
     'Content-Type': 'application/json',
     ...options.headers,
   }
-  
-  // Добавляем токен в заголовок, если он есть
+
   if (token) {
     headers['Authorization'] = `Bearer ${token}`
   }

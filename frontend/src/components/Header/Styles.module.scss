@@ -1,28 +1,27 @@
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: var(--white-color);
-  padding:  15px;
+  padding: clamp(10px, 3vw, 15px);  
   box-shadow: 0 0 100px var(--background-blur-color);
   border-radius: 0 0 20px 20px;
 
   &__button {
-     cursor: pointer;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s ease-out;
     color: var(--white-color);
-    min-width: 170px;
-    padding: 16px 32px;
-    border-radius: 15px;
+    min-width: clamp(120px, 20vw, 170px); 
+    padding: clamp(12px, 2vw, 16px) clamp(24px, 4vw, 32px);  
+    border-radius: clamp(10px, 2vw, 15px);  
     background-color: var(--blue-color);
     border: none;
-    color: var(--white-color);
-    font-size: 1rem;
+    font-size: clamp(0.875rem, 2.5vw, 1rem); 
     text-decoration: none;
+    
     &:hover {
       background-color: var(--blue-2-color);
     }

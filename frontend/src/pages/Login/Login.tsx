@@ -1,7 +1,7 @@
 import styles from './Styles.module.scss'
 import { useState, type FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router'
-import { authService } from './../../Services/auth.service'
+import { authService } from '../../Services/auth.service'
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -53,7 +53,7 @@ function Login() {
       <form className={styles.container__form} onSubmit={handleSubmit}>
         <div className={styles.container__header}>
           <h2 className={styles.container__title}>Вход</h2>
-          <Link to={"/"}><img src='../../../src/assets/urfu.svg' className={styles.container__logo} alt="logo" /></Link>
+          <Link to={"/"}><img src='../src/assets/urfu.svg' className={styles.container__logo} alt="logo" /></Link>
         </div>
 
         {error && <div className={styles.container__error}>{error}</div>}

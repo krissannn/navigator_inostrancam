@@ -74,6 +74,7 @@ class ArticleBase(BaseModel):
     content: str
     content_en: Optional[str] = None
     order: int = 0
+    checklist: Optional[List[dict]] = None  # ← Добавлено поле checklist
     class Config:
         orm_mode = True
 

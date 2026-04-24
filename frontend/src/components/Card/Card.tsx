@@ -7,13 +7,10 @@ type CardProps = {
   number: number,
   logo: string,
   title: string,
-  onClick: () => void 
+  onClick?: () => void 
 }
 
 function Card({number, logo, title, onClick}: CardProps){
-
-
-
   return (
     <div className={classes.card} onClick={onClick}>
       <div className={classes.card_top}>

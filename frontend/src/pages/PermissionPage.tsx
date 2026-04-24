@@ -1,6 +1,6 @@
 
 import type { CardDataElement } from '../DB/cardsData'
-import BasePage from './BasePage'
+import BasePage from "./BasePage/BasePage"
 
 
 interface PermissionPageProps {

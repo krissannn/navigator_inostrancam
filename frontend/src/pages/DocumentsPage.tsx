@@ -1,5 +1,5 @@
 
-import BasePage from "./BasePage"
+import BasePage from "./BasePage/BasePage"
 import type { CardDataElement } from "../DB/cardsData"
 
 

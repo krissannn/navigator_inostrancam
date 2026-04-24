@@ -5,11 +5,9 @@ import remarkGfm from "remark-gfm";
 function InfoPanel({description}: {description: string}) {
   return (
     <div className={styles.markdownContent}>
-
       <ReactMarkdown remarkPlugins={[remarkGfm]}>
         {description}
-      </ReactMarkdown>
-      
+      </ReactMarkdown>   
     </div>
   )
 }

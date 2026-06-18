@@ -1,30 +1,21 @@
-
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { authService } from "./auth.service";
-
-type AuthContextType = {
-  isAuthenticated: boolean;
-  login: (token: string) => void;
-  logout: () => void;
-};
-
-export const AuthContext = createContext<AuthContextType | null>(null);
+import { AuthContext } from "./auth.context";
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(() =>
+    authService.isAuthenticated()
+  );
 
-  // Проверяем токен при монтировании
-  useEffect(() => {
-    setIsAuthenticated(authService.isAuthenticated());
-  }, []);
-
-  const login = (token: string) => {
+  const login = (token: string, username: string) => {
     authService.setToken(token);
+    authService.setCurrentUser(username);
     setIsAuthenticated(true);
   };
 
   const logout = () => {
     authService.clearToken();
+    authService.clearCurrentUser();
     setIsAuthenticated(false);
   };
 
@@ -33,10 +24,4 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       {children}
     </AuthContext.Provider>
   );
-}
-
-export function useAuth() {
-  const context = useContext(AuthContext);
-  if (!context) throw new Error("useAuth must be used within AuthProvider");
-  return context;
 }

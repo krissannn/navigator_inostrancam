@@ -32,7 +32,8 @@ function VNJPage() {
         setInfo(data[0]);
         setLoading(false);
       })
-      .catch(error => {
+      .catch((error: unknown) => {
+        console.error("Failed to load articles:", error);
         setLoading(false);
       });
   }, []);

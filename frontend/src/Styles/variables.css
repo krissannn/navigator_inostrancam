@@ -1,0 +1,53 @@
+:root {
+  /* Border radius */
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --radius-xs: 8px;
+
+  /* Legacy aliases (used across modules) */
+  --big-border-radius: var(--radius-lg);
+  --small-border-radius: var(--radius-md);
+
+  /* Colors */
+  --white-color: #fff;
+  --white-2-color: #fafafa;
+  --main-color: #f6f6f6;
+  --blue-color: #1e4391;
+  --blue-2-color: #0f2b5e;
+  --blue-light-color: #2884ed;
+  --blue-disabled-color: #5075c3;
+  --red-color: #ef302b;
+  --red-2-color: #c0231f;
+  --ultra-light-grey-color: #2222220d;
+  --background-blur-color: #00000066;
+  --light-grey-color: #2222221f;
+  --black-color: #222;
+  --black-2-color: #2222220d;
+  --black-3-color: #22222266;
+  --green-color: #3ba68c;
+  --green-2-color: #79ad6e;
+  --orange-color: #e07c00;
+  --orange-2-color: #b85e00;
+
+  /* Popup / status accents */
+  --safe-accent: #2d5be3;
+  --safe-bg: #f0f4ff;
+  --warning-accent: #e07c00;
+  --warning-bg: #fff8ee;
+  --critical-accent: #d32f2f;
+  --critical-bg: #fff2f2;
+  --text-dark: #1a2560;
+  --text-muted: #6b7ba4;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 16px rgba(30, 67, 145, 0.3);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+  --shadow-overlay: rgba(90, 100, 120, 0.55);
+
+  /* Layout */
+  --page-max-width: 90%;
+  --info-panel-width: 450px;
+  --header-offset: 60px;
+}

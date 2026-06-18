@@ -38,6 +38,12 @@
     font-weight: 700;
     font-size: clamp(20px, 5vw, 24px);
   }
+
+  &__error {
+    color: var(--red-color);
+    font-size: clamp(12px, 3vw, 13px);
+    margin: 0;
+  }
   
   &__input {
     font-weight: 400;

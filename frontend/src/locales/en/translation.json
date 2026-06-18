@@ -1,4 +1,10 @@
 {
+  "common": {
+    "loading": "Loading...",
+    "close": "Close",
+    "retry": "Retry",
+    "checklist": "Checklist"
+  },
   "checklist": {
     "title": "My Tasks",
     "completed": "completed"
@@ -9,6 +15,31 @@
     "leaveReview": "Leave a review",
     "nextStep": "Go to next step"
   },
+  "allStepsPopup": {
+    "title": "All steps completed!",
+    "subtitle": "You have successfully completed all registration stages. Welcome to student life at UrFU!",
+    "faqQuestion": "Still have questions?",
+    "faqSub": "Visit the FAQ section — it contains answers to the most common questions from international students.",
+    "goToFaq": "Go to FAQ →",
+    "close": "Close"
+  },
+  "aiAdvice": {
+    "show": "Get AI advice",
+    "hide": "Hide AI advice",
+    "loading": "AI is analyzing this step...",
+    "error": "Could not get a response. Please try again later.",
+    "retry": "Retry",
+    "title": "AI advice",
+    "empty": "AI could not provide advice for this step — not enough reviews yet."
+  },
+  "plane-page": {
+    "originTitle": "Choose where you are from",
+    "nearAbroad": "Near abroad",
+    "farAbroad": "Far abroad",
+        "title": "Border Crossing and Obtaining a Migration Card",
+    "description_for_near_abroad": "# 🟦 Near Abroad (Visa-Free Entry)\nFor citizens of Kazakhstan, Uzbekistan, Kyrgyzstan, Tajikistan, Armenia, Belarus.\n## 📋 Main Point at this Stage\n**Migration card** is the primary document confirming the legality of your border crossing.\n\n📍 It is issued **free of charge** directly at border checkpoints.\nMain checkpoints are marked with a blue circle on the map.\n\n## 📑 Documents to Have with You\n\n- ✅ **International passport** (or ID card, if permitted)\n- ✅ **Migration card** (with **\"Education\" / \"Учеба\"** mark)\n\n---\n\n## ⚠️ Important!\n\nIf you have been to the Russian Federation earlier this year:\n\n1. Check for any **unpaid traffic fines (GIBDD)** via the Ministry of Internal Affairs website\n2. Otherwise, you may be **denied entry** at the checkpoint",
+    "description_for_far_abroad": "# 🟥 Far Abroad (Visa Entry)\n\n> For citizens of China, India, Egypt, Turkey, and other countries.\n\n---\n\n## 📋 Entry Process\n\n1. **Obtaining a student visa** in your country of residence\n2. **Migration card** — issued at the border\n\n---\n\n## 📑 Documents to Obtain a Visa\n\n- ✅ **Original UrFU invitation letter** (electronic or paper copy)\n- ✅ **International passport** (valid for **at least 1.5 years**)\n- ✅ **HIV-negative certificate**\n- ✅ **Completed application form** and **photos**\n\n---\n\n## ⚠️ Important\n\n> **The visa must be issued BEFORE entering Russia!**\n\nYou will not be allowed into the Russian Federation without a valid visa.\n\n---\n\n## 📌 Memo\n\n| What | Where to get |\n|-----|---------------|\n| 🎓 **UrFU Invitation** | Sent via e-mail |\n| 🛂 **Student Visa** | At the Russian Consulate in your country |\n| 📄 **Migration Card** | At the border or airport |\n| 🏥 **HIV-Negative Certificate** | At a medical center in your country |\n\n---\n\n> 💡 **Tip:** Start your visa application in advance; the process can take up to 4-6 weeks."
+  },
   "mainPage": {
     "title": "Navigator for International Students",
     "subtitle": "Step-by-step guide to adaptation in Russia",
@@ -17,7 +48,8 @@
     "step_2": "Moving into dormitory",
     "step_3": "Long-term registration",
     "step_4": "Obtaining TRP/Temporary Residence Permit",
-    "step_5": "FAQ (Frequently Asked Questions)"
+    "step_5": "FAQ (Frequently Asked Questions)",
+    "moreDetails": "More details"
   },
   "button": {
     "login": "Login",
@@ -25,7 +57,7 @@
     "register": "Create account"
   },
   "registration": {
-    "question": "Dont't have an account?",
+    "question": "Don't have an account?",
     "title": "Create account"
   },
   "login-form": {
@@ -46,7 +78,7 @@
   },
   "deportation-banner": {
     "done": "Documents are ready!",
-    "critical": "Urgent! Time is running up",
+    "critical": "Urgent! Time is running out",
     "warning": "Hurry up with the registration",
     "safe": "Duration of stay",
     "timer": "Press to open the timer",
@@ -56,16 +88,16 @@
   "deportation-page": {
     "notification": "UrFU - notification about registration",
     "msg-less-0": "⚠️ The period of stay has expired! Contact the migration department immediately",
-    "msg-less-7": "`🚨 There are only ${daysLeft} days left. before the end of the stay!`",
-    "msg-less-14": "`⚠️ There are ${daysLeft} days left before the end of the stay. Don't delay!`",
-    "msg-less-30": "`📅 There are ${daysLeft} days left before the end of the stay.`",
-    "msg": "`✅ There are ${daysLeft} days left before the end of the stay.`",
+    "msg-less-7": "🚨 Only {{daysLeft}} days left before the end of the stay!",
+    "msg-less-14": "⚠️ {{daysLeft}} days left before the end of the stay. Don't delay!",
+    "msg-less-30": "📅 {{daysLeft}} days left before the end of the stay.",
+    "msg": "✅ {{daysLeft}} days left before the end of the stay.",
     "ready-registration": "The registration is ready",
     "staying": "Duration of stay",
     "isDone-true": "You have successfully completed all the registration steps",
     "isDone-false": "Days before the expiration of the permitted period of stay",
     "days": "days",
-    "went": "went",
+    "went": "elapsed",
     "90days": "90 days",
     "entry": "Date of entry",
     "deadline": "Deadline date",
@@ -74,6 +106,8 @@
     "hurry": "Hurry up",
     "ok": "OK",
     "enable-notification": "Enable notifications",
+    "notifications-unavailable": "Notifications are unavailable in this browser or context",
+    "notifications-denied": "Notification permission was not granted. Please allow it in your browser settings.",
     "registration-success": "I got my registration and residence permit",
     "timer-success": "The timer is stopped. Your documents are in order",
     "reset": "Reset (re-entered)"
@@ -87,7 +121,7 @@
   },
   "success-popup": {
     "completed": "This step is completed",
-    "thanks": "Thank you for review",
+    "thanks": "Thank you for your review",
     "review": "Leave a review first",
     "hint": "Leave a review to continue"
   },
@@ -103,17 +137,32 @@
     "stress-level": "Stress level",
     "stress-lvl-1": "Calm",
     "stress-lvl-2": "A little worried",
-    "stress-lvl-3": "Medium stressed",
+    "stress-lvl-3": "Medium stress",
     "stress-lvl-4": "Severe stress",
     "stress-lvl-5": "Very stressful",
     "queue": "Waiting time in the queue",
     "graphics-question": "Did the work schedule match the specified one?",
     "yes": "Yes",
     "no": "No",
-    "custom": "My variant",
+    "custom": "Custom",
     "hint": "Describe the situation",
-    "docs-question": "What documents are needed?",
-    "submit": "Send a review"
+    "docs-question": "What documents were required?",
+    "submit": "Submit review",
+    "documents": {
+      "passport": "Passport",
+      "passportTranslation": "Passport translation",
+      "migrationCard": "Migration card",
+      "dactyloscopy": "Fingerprint registration card",
+      "registration": "Registration",
+      "medicalCert": "Medical examination certificate",
+      "dmsPolicy": "Voluntary health insurance policy",
+      "studentCard": "Student ID card"
+    },
+    "queueOptions": {
+      "noQueue": "No queue",
+      "15min": "15 min",
+      "30min": "30 min",
+      "moreThanHour": "More than an hour"
+    }
   }
-
 }

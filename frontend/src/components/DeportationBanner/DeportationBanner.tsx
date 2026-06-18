@@ -1,30 +1,66 @@
+import { useEffect } from "react";
 import { Link } from "react-router";
 import styles from "./Styles.module.scss";
 import { useTranslation } from "react-i18next";
-
-const STORAGE_KEY = "deportation_start_date";
-const STORAGE_DONE_KEY = "deportation_done";
-const TOTAL_DAYS = 90;
-
-function getDaysLeft(): number {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (!stored) return TOTAL_DAYS;
-  const startDate = new Date(stored);
-  const diffMs =
-    startDate.getTime() + TOTAL_DAYS * 24 * 60 * 60 * 1000 - Date.now();
-  return Math.max(0, Math.ceil(diffMs / (1000 * 60 * 60 * 24)));
-}
+import { authService } from "../../Services/auth.service";
+import {
+  ensureDeportationTimerForUser,
+  getCurrentDeportationUserKey,
+  getDeportationDaysLeft,
+  getDeportationLimit,
+  getDeportationStartDate,
+  isDeportationDone,
+} from "../../utils/deportationStorage";
 
 function DeportationBanner() {
+  const { t } = useTranslation();
 
-  const { t } = useTranslation()
+  const isAuthenticated = authService.isAuthenticated();
+  const userKey = getCurrentDeportationUserKey();
+  const startDate = getDeportationStartDate(userKey);
 
-  const isDone = localStorage.getItem(STORAGE_DONE_KEY) === "true";
-  const daysLeft = getDaysLeft();
-  const progress = ((TOTAL_DAYS - daysLeft) / TOTAL_DAYS) * 100;
+  useEffect(() => {
+    if (!isAuthenticated) {
+      return;
+    }
+
+    const initializeTimer = (key: string) => {
+      const isReEntry = localStorage.getItem(`re_entry_flag_${key}`) === "true";
+      ensureDeportationTimerForUser(key, isReEntry);
+    };
+
+    if (!userKey) {
+      const storedUser = localStorage.getItem("current_user") || localStorage.getItem("username") || "";
+      if (storedUser) {
+        initializeTimer(storedUser);
+      }
+      return;
+    }
+
+    if (!startDate) {
+      initializeTimer(userKey);
+    }
+  }, [isAuthenticated, userKey, startDate]);
+
+  const hasStarted = !!startDate;
+  const canShowBanner = isAuthenticated && hasStarted;
+
+  if (!canShowBanner) {
+    return null;
+  }
+
+  const isDone = isDeportationDone(userKey);
+  const daysLeft = getDeportationDaysLeft(userKey);
+  const totalDays = getDeportationLimit(userKey);
+  
+  const progress = ((totalDays - daysLeft) / totalDays) * 100;
+
+  const isShortTimer = totalDays <= 7;
+  const isCritical = isShortTimer ? daysLeft <= 2 : daysLeft <= 7;
+  const isWarning = isShortTimer ? daysLeft <= 5 : daysLeft <= 30;
 
   const urgency =
-    isDone ? "done" : daysLeft <= 7 ? "critical" : daysLeft <= 30 ? "warning" : "safe";
+    isDone ? "done" : isCritical ? "critical" : isWarning ? "warning" : "safe";
 
   const label = {
     done: t('deportation-banner.done'),
@@ -42,7 +78,9 @@ function DeportationBanner() {
         <div className={styles.text}>
           <span className={styles.label}>{label}</span>
           {!isDone && (
-            <span className={styles.sub}>{t('deportation-banner.timer')}</span>
+            <span className={styles.sub}>
+              {t('deportation-banner.timer')} 
+            </span>
           )}
         </div>
       </div>

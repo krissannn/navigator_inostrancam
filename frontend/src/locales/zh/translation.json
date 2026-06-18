@@ -1,4 +1,10 @@
 {
+  "common": {
+    "loading": "加载中...",
+    "close": "关闭",
+    "retry": "重试",
+    "checklist": "清单"
+  },
   "checklist": {
     "title": "我的任务",
     "completed": "已完成"
@@ -9,6 +15,31 @@
     "leaveReview": "留下反馈",
     "nextStep": "进入下一步"
   },
+  "allStepsPopup": {
+    "title": "所有步骤已完成！",
+    "subtitle": "您已成功完成所有登记步骤。欢迎加入乌拉尔联邦大学的校园生活！",
+    "faqQuestion": "还有疑问？",
+    "faqSub": "请查看常见问题解答——其中汇总了留学生最常问的问题。",
+    "goToFaq": "前往常见问题 →",
+    "close": "关闭"
+  },
+  "aiAdvice": {
+    "show": "获取 AI 建议",
+    "hide": "隐藏 AI 建议",
+    "loading": "AI 正在分析此步骤...",
+    "error": "无法获取回复，请稍后再试。",
+    "retry": "重试",
+    "title": "AI 建议",
+    "empty": "AI 暂时无法为此步骤提供建议——评价数量不足。"
+  },
+  "plane-page": {
+    "originTitle": "请选择您的出发地",
+    "nearAbroad": "近邻国家",
+    "farAbroad": "远方国家",
+    "title": "过境并获取移民卡",
+    "description_for_near_abroad": "# 🟦 近邻國家 (免签入境)\n适用于哈萨克斯坦、乌兹别克斯坦、吉尔吉斯斯坦、塔吉克斯坦、亚美尼亚、白俄罗斯公民。\n## 📋 本阶段重点\n**移民卡** 是证明您合法入境的主要文件。\n\n📍 它在边境检查站 (КПП) **免费**发放。\n主要检查站已在地图上用蓝色圆圈标出。\n\n## 📑 随身携带的文件\n\n- ✅ **护照**（或身份证，如果允许）\n- ✅ **移民卡**（带有 **“留学 / Учеба”** 标记）\n\n---\n\n## ⚠️ 重要提示！\n\n如果您今年早些时候曾到过俄罗斯联邦：\n\n1. 请通过内务部网站检查是否有 **未交的交警 (GIBDD) 罚款**\n2. 否则，您可能会在检查站被 **拒绝入境**",
+    "description_for_far_abroad": "# 🟥 远邻国家 (签证入境)\n\n> 适用于中国、印度、埃及、土耳其等国家的公民。\n\n---\n\n## 📋 入境流程\n\n1. 在居住国 **办理留学签证**\n2. **移民卡** — 在边境发放\n\n---\n\n## 📑 办理签证所需材料\n\n- ✅ **乌拉尔联邦大学 (UrFU) 邀请函原件**（电子版或纸质版）\n- ✅ **护照**（有效期 **至少1.5年**）\n- ✅ **艾滋病检验报告单** (HIV-negative certificate)\n- ✅ **填妥的申请表** 和 **照片**\n\n---\n\n## ⚠️ 重要提示\n\n> **必须在入境俄罗斯之前办妥签证！**\n\n没有有效签证，您将无法进入俄罗斯联邦境内。\n\n---\n\n## 📌 备忘录\n\n| 材料 | 在哪里获取 |\n|-----|---------------|\n| 🎓 **乌联大邀请函** | 通过电子邮件发送 |\n| 🛂 **留学签证** | 在您所在国家的俄罗斯领事馆 |\n| 📄 **移民卡** | 在边境或机场 |\n| 🏥 **艾滋病检验报告** | 在您所在国家的医疗中心 |\n\n---\n\n> 💡 **建议：** 请提前开始办理签证，整个过程可能需要 4 到 6 周。"
+  },
   "mainPage": {
     "title": "外国留学生导航仪",
     "subtitle": "适应俄罗斯生活的分步指南",
@@ -17,10 +48,12 @@
     "step_2": "入住宿舍",
     "step_3": "长期居留登记",
     "step_4": "获取临时/永久居留许可",
-    "step_5": "常见问题解答"
+    "step_5": "常见问题解答",
+    "moreDetails": "查看更多"
   },
   "button": {
-    "enter": "登录",
+    "login": "登录",
+    "logout": "退出",
     "register": "注册"
   },
   "registration": {
@@ -55,10 +88,10 @@
   "deportation-page": {
     "notification": "乌拉尔联邦大学 - 居留登记通知",
     "msg-less-0": "⚠️ 居留期限已过！请立即联系移民部门",
-    "msg-less-7": "🚨 居留期限还剩 ${daysLeft} 天！",
-    "msg-less-14": "⚠️ 居留期限还剩 ${daysLeft} 天。请勿拖延！",
-    "msg-less-30": "📅 居留期限还剩 ${daysLeft} 天。",
-    "msg": "✅ 居留期限还剩 ${daysLeft} 天。",
+    "msg-less-7": "🚨 居留期限还剩 {{daysLeft}} 天！",
+    "msg-less-14": "⚠️ 居留期限还剩 {{daysLeft}} 天。请勿拖延！",
+    "msg-less-30": "📅 居留期限还剩 {{daysLeft}} 天。",
+    "msg": "✅ 居留期限还剩 {{daysLeft}} 天。",
     "ready-registration": "登记已完成",
     "staying": "居留期限",
     "isDone-true": "您已成功完成所有登记步骤",
@@ -73,6 +106,8 @@
     "hurry": "请抓紧时间",
     "ok": "好的",
     "enable-notification": "开启通知",
+    "notifications-unavailable": "此浏览器或上下文中无法使用通知",
+    "notifications-denied": "未授予通知权限。请在浏览器设置中允许它。",
     "registration-success": "我已获得居留登记和居留许可",
     "timer-success": "计时器已停止。您的文件齐全合规",
     "reset": "重置（再次入境）"
@@ -89,6 +124,11 @@
     "thanks": "感谢您的反馈",
     "review": "请先留下反馈",
     "hint": "请留下反馈以继续"
+  },
+  "not-found-page": {
+    "error-code": "404 错误",
+    "error-message": "抱歉！该页面不存在",
+    "return": "返回首页"
   },
   "map": "打开地图",
   "review-popup": {
@@ -107,6 +147,22 @@
     "custom": "其他",
     "hint": "描述情况",
     "docs-question": "需要哪些文件？",
-    "submit": "提交评价"
+    "submit": "提交评价",
+    "documents": {
+      "passport": "护照",
+      "passportTranslation": "护照翻译件",
+      "migrationCard": "移民卡",
+      "dactyloscopy": "指纹登记卡",
+      "registration": "居留登记",
+      "medicalCert": "体检证明",
+      "dmsPolicy": "自愿医疗保险单",
+      "studentCard": "学生证"
+    },
+    "queueOptions": {
+      "noQueue": "无需排队",
+      "15min": "15分钟",
+      "30min": "30分钟",
+      "moreThanHour": "超过一小时"
+    }
   }
 }

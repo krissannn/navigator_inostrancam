@@ -20,7 +20,6 @@ export async function authFetch(endpoint: string, options: RequestInit = {}) {
     headers,
   })
   
-  // Если токен невалидный (401) - удаляем его и перенаправляем на логин
   if (response.status === 401) {
     authService.clearToken()
     window.location.href = '/login'

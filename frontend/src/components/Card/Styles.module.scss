@@ -17,18 +17,25 @@
     transform: scale(1.05);
     transition: transform 0.3s ease;
   }
+}
 
-   &:hover::after {
-    content: "Подробнее >";
-    font-family: 'Roboto';
-    font-weight: 700;
-    position: absolute;
-    bottom: 10px;
-    left: 5%;
-    padding: 10px 0;
-    color: rgb(13, 71, 137);
-    font-size: 0.9rem;
-  }
+.detailsText {
+  position: absolute;
+  bottom: 10px;
+  left: 5%;
+  padding: 10px 0;
+  color: rgb(13, 71, 137);
+  font-family: 'Roboto';
+  font-weight: 700;
+  font-size: 0.9rem;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover .detailsText {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .card_icon {

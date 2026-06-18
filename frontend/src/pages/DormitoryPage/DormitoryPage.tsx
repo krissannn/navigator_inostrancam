@@ -18,7 +18,7 @@ const API_URL = import.meta.env.VITE_API_URL
 function DormitoryPage() {
   const navigate = useNavigate()
   const [isVisible, setIsVisible] = useState(false)
-  const [info, setInfo] = useState<InfoCard | null>(null)  // ✅ явно указываем null
+  const [info, setInfo] = useState<InfoCard | null>(null)  
   const [loading, setLoading] = useState(true)
   
   useEffect(() => {

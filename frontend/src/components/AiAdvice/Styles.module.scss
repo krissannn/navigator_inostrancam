@@ -19,7 +19,7 @@
   font-size: clamp(13px, 3.5vw, 15px);
   font-weight: 600;
   transition: filter 0.2s, transform 0.15s;
-  box-shadow: 0 4px 16px rgba(30, 67, 145, 0.3);
+  box-shadow: var(--shadow-md);
 
   &:hover {
     filter: brightness(1.1);

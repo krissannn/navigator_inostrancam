@@ -10,9 +10,9 @@ export function getLocalizedArticleContent(
 
   switch (language) {
     case "en":
-      return article.content_en || article.content || "";
+      return article.content_en ||  "";
     case "zh":
-      return article.content_zh || article.content_en || article.content || "";
+      return article.content_zh || "";
     default:
       return article.content || "";
   }

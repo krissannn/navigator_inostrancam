@@ -64,7 +64,11 @@
     "btn": "Войти",
     "error-invalid": "Неверный логин или пароль",
     "username": "Логин",
-    "password": "Пароль"
+    "password": "Пароль",
+    "validation": {
+      "username-required": "Логин обязателен",
+      "password-required": "Пароль обязателен"
+    }
   },
   "registration-form": {
     "title": "Регистрация",
@@ -74,7 +78,15 @@
     "country": "Страна",
     "btn-title": "Зарегистрироваться",
     "error": "Ошибка регистрации",
-    "error-invalid": "Некорректное имя пользователя или пароль"
+    "error-invalid": "Некорректное имя пользователя или пароль",
+    "validation": {
+      "username-required": "Имя пользователя обязательно",
+      "email-required": "Email обязателен",
+      "email-invalid": "Некорректный формат email",
+      "password-required": "Пароль обязателен",
+      "password-min": "Пароль должен быть не менее 6 символов",
+      "country-required": "Страна обязательна"
+    }
   },
   "deportation-banner": {
     "done": "Документы готовы",

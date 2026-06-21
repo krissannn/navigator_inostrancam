@@ -1,41 +1,23 @@
-
-
 .card {
   background-color: white;
   border-radius: 20px;
   padding: 15px;
-  position: relative;
-  height: 175px;
+  min-height: 175px; 
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     cursor: pointer;
     transform: scale(1.05);
     transition: transform 0.3s ease;
   }
-
-  &:hover .card_img {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
-  }
 }
 
-.detailsText {
-  position: absolute;
-  bottom: 10px;
-  left: 5%;
-  padding: 10px 0;
-  color: rgb(13, 71, 137);
-  font-family: 'Roboto';
-  font-weight: 700;
-  font-size: 0.9rem;
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.card:hover .detailsText {
-  opacity: 1;
-  transform: translateY(0);
+.card_top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px; 
 }
 
 .card_icon {
@@ -51,12 +33,40 @@
   color: white;
   padding: 10px;
   border-radius: 50%;
-  display: inline;
-  width: 20px;
-  text-align: center;
+  display: flex;      
+  align-items: center;
+  justify-content: center;
+  width: 40px;        
+  height: 40px;
+  box-sizing: border-box;
+  margin: 0;
+  font-size: 1.1rem;
 }
 
-.card_top {
-  display: flex;
-  justify-content: space-between;
+.card_title {
+  margin: 0;
+  font-size: 1.17rem;
+  line-height: 1.3;
+  flex-grow: 1; 
+}
+
+.detailsText {
+  color: rgb(13, 71, 137);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-top: 8px; 
+  opacity: 0;
+  max-height: 0; 
+  overflow: hidden;
+  transform: translateY(4px);
+  transition: opacity 0.25s ease, transform 0.25s ease, max-height 0.25s ease, margin-top 0.25s ease;
+}
+
+.card:hover {
+  .detailsText {
+    opacity: 1;
+    max-height: 40px; 
+    transform: translateY(0);
+  }
 }

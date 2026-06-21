@@ -39,8 +39,13 @@
     font-size: clamp(20px, 5vw, 24px);
   }
 
+  // Общая ошибка от сервера (сверху формы)
   &__error {
     color: var(--red-color);
+    background-color: rgba(210, 45, 37, 0.1); // Легкий красный фон
+    border-left: 4px solid var(--red-color, #d22d25);
+    padding: 10px 12px;
+    border-radius: 4px;
     font-size: clamp(12px, 3vw, 13px);
     margin: 0;
   }
@@ -56,16 +61,11 @@
     padding: clamp(10px, 2.5vw, 10px) clamp(10px, 3vw, 12px);
     margin-bottom: 0;
     box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
     
     &:focus {
       outline: none;
       border-color: var(--blue-color);
-    }
-
-    &_error {
-      color: #d22d25;
-      font-size: clamp(12px, 3vw, 13px);
-      margin-top: 4px;
     }
   }
   
@@ -78,7 +78,7 @@
     color: var(--white-color);
     width: 100%;
     padding: clamp(12px, 3.5vw, 16px) clamp(20px, 5vw, 32px);
-    margin-top: clamp(12px, 3vw, 20px);
+    margin-top: clamp(8px, 2vw, 12px); // Чуть уменьшил, так как у нижнего инпута есть отступ от ошибки
     border-radius: clamp(12px, 3vw, 15px);
     background-color: var(--blue-color);
     border: none;
@@ -92,5 +92,43 @@
     &:active {
       transform: scale(0.98);
     }
+  }
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+
+  &:has(.fieldError) {
+    .container__input {
+      border-color: #d22d25;
+      
+      &:focus {
+        box-shadow: 0 0 0 2px rgba(210, 45, 37, 0.2);
+      }
+    }
+  }
+}
+
+.fieldError {
+  color: #d22d25;
+  font-size: clamp(11px, 2.8vw, 12px);
+  margin-top: 4px;
+  padding-left: 4px;
+  font-weight: 400;
+  line-height: 120%;
+  animation: fadeInError 0.2s ease-out forwards;
+}
+
+@keyframes fadeInError {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

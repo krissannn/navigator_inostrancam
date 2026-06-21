@@ -64,7 +64,11 @@
     "btn": "登录",
     "error-invalid": "用户名或密码错误",
     "username": "用户名",
-    "password": "密码"
+    "password": "密码",
+    "validation": {
+      "username-required": "用户名是必填项",
+      "password-required": "密码是必填项"
+    }
   },
   "registration-form": {
     "title": "注册",
@@ -74,7 +78,15 @@
     "country": "国家",
     "btn-title": "注册",
     "error": "注册失败",
-    "error-invalid": "用户名或密码无效"
+    "error-invalid": "用户名或密码无效",
+    "validation": {
+      "username-required": "用户名是必填项",
+      "email-required": "电子邮箱是必填项",
+      "email-invalid": "电子邮箱格式无效",
+      "password-required": "密码是必填项",
+      "password-min": "密码长度不能少于 6 个字符",
+      "country-required": "国家是必填项"
+    }
   },
   "deportation-banner": {
     "done": "文件已备妥",

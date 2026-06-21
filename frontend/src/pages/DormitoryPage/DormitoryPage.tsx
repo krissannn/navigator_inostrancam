@@ -12,6 +12,7 @@ import ReturnButton from "../../components/ReturnButton/ReturnButton";
 import { t } from "i18next";
 import { type InfoCard } from "../../types";
 import AiAdvice from "../../components/AiAdvice/AiAdvice";
+import { useBuildings } from "../../Hooks/useBuildings";
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -20,6 +21,10 @@ function DormitoryPage() {
   const [isVisible, setIsVisible] = useState(false)
   const [info, setInfo] = useState<InfoCard | null>(null)  
   const [loading, setLoading] = useState(true)
+  const { 
+      loading: loadingBuildings, 
+      stepGeoJSON 
+    } = useBuildings(2);
   
   useEffect(() => {
     fetch(`${API_URL}/steps/2/articles`)
@@ -34,7 +39,7 @@ function DormitoryPage() {
       })
   }, [])
 
-  if (loading || !info) {
+  if (loading || !info || loadingBuildings) {
     return <Loading />
   }
 
@@ -48,13 +53,13 @@ function DormitoryPage() {
       )}
 
       <ReturnButton />
-      <InfoMap zoom={11}>
+      <InfoMap zoom={11} features={[stepGeoJSON]}>
         <div className={styles.container__info}>
-          <Link to="/plane/map" className={styles.mapMobileBtn}>
+          <Link to="/step/2/map" className={styles.mapMobileBtn}>
             🗺️ {t('map')}
           </Link>
           
-          <PageCard step_id={info.step_id} title={info.title} icon_link={dormitory} />
+          <PageCard step_id={info.step_id} title={t("mainPage.step_2")} icon_link={dormitory} />
           <InfoPanel description={info.content} />
 
           <AiAdvice stepId={2} /> 

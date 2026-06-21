@@ -6,8 +6,7 @@ import type { GeoJSONFeatureCollection } from "../../types";
 import styles from "./Styles.module.scss";
 
 type InfoMapProps = {
-  features?: Array<() => GeoJSONFeatureCollection>;
-  presets?: string[];
+  features?: GeoJSONFeatureCollection[];
   zoom: number;
   children: ReactNode;
   mapRoute?: string;
@@ -15,7 +14,6 @@ type InfoMapProps = {
 
 function InfoMap({
   features,
-  presets = [],
   zoom,
   children,
   mapRoute,
@@ -46,14 +44,20 @@ function InfoMap({
               zoom,
             }}
           >
-            {features?.map((featureFactory, index) => (
+            {features?.map((geoJsonData, index) => (
               <ObjectManager
                 key={index}
-                features={featureFactory()}
+                features={geoJsonData}
                 options={{ clusterize: false }}
                 objects={{
-                  preset: presets[index],
                   openBalloonOnClick: true,
+                  preset: "islands#blueDotIcon", 
+                  processEachObject: (obj: any) => {
+                    if (obj.options) {
+                      obj.options = { ...obj.options };
+                    }
+                    return obj;
+                  }
                 }}
               />
             ))}

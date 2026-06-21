@@ -21,7 +21,7 @@ function Checklist({
   onAllCompleted,
   setIsVisible,
 }: ChecklistProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const hasTriggeredConfetti = useRef(false);
 
   const [checklistPoints, setChecklistPoints] = useState<ChecklistPoint[]>(() =>
@@ -82,13 +82,16 @@ function Checklist({
     );
   }, [allChecked, onAllCompleted, setIsVisible]);
 
-  const handleToggleCheckbox = (stepId: number) => {
+  const handleToggleCheckbox = (id: string) => {
     setChecklistPoints((prev) =>
       prev.map((point) =>
-        point.id === stepId ? { ...point, isMarked: !point.isMarked } : point
+        point.id === id ? { ...point, isMarked: !point.isMarked } : point
       )
     );
   };
+
+  // Определяем безопасный текущий язык
+  const currentLang = (i18n.language || "ru") as "ru" | "en" | "zh";
 
   return (
     <div className={styles.checklist}>
@@ -111,28 +114,33 @@ function Checklist({
       </div>
 
       <ul className={styles.checklist__list}>
-        {checklistPoints.map((point, index) => (
-          <li
-            key={point.id}
-            className={`${styles.checklist__item} ${point.isMarked ? styles.checklist__item_completed : ""}`}
-            style={{ animationDelay: `${index * 0.05}s` }}
-          >
-            <label className={styles.checklist__label}>
-              <input
-                type="checkbox"
-                checked={point.isMarked}
-                onChange={() => handleToggleCheckbox(point.id)}
-                className={styles.checklist__checkbox}
-              />
-              <span className={styles.checklist__checkboxCustom}>
-                {point.isMarked && (
-                  <span className={styles.checklist__checkmark}>✓</span>
-                )}
-              </span>
-              <span className={styles.checklist__text}>{point.description}</span>
-            </label>
-          </li>
-        ))}
+        {checklistPoints.map((point, index) => {
+
+          const textToShow = point.description[currentLang] || point.description["ru"];
+
+          return (
+            <li
+              key={point.id}
+              className={`${styles.checklist__item} ${point.isMarked ? styles.checklist__item_completed : ""}`}
+              style={{ animationDelay: `${index * 0.05}s` }}
+            >
+              <label className={styles.checklist__label}>
+                <input
+                  type="checkbox"
+                  checked={point.isMarked}
+                  onChange={() => handleToggleCheckbox(point.id)}
+                  className={styles.checklist__checkbox}
+                />
+                <span className={styles.checklist__checkboxCustom}>
+                  {point.isMarked && (
+                    <span className={styles.checklist__checkmark}>✓</span>
+                  )}
+                </span>
+                <span className={styles.checklist__text}>{textToShow}</span>
+              </label>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

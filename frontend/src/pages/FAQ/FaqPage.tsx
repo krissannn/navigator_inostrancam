@@ -11,6 +11,7 @@ import { Link, useNavigate } from "react-router";
 import ReturnButton from "../../components/ReturnButton/ReturnButton";
 import { t } from "i18next";
 import { type InfoCard } from "../../types";
+import { useBuildings } from "../../Hooks/useBuildings";
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -20,6 +21,12 @@ function FaqPage() {
   const [info, setInfo] = useState<InfoCard | null>(null)  
   const [loading, setLoading] = useState(true)
   
+  const { 
+    loading: loadingBuildings, 
+      stepGeoJSON 
+    } = useBuildings(5);
+  
+
   useEffect(() => {
     fetch(`${API_URL}/steps/5/articles`)
       .then(response => response.json())
@@ -33,7 +40,7 @@ function FaqPage() {
       })
   }, [])
 
-  if (loading || !info) {
+  if (loading || !info || loadingBuildings) {
     return <Loading />
   }
 
@@ -47,13 +54,13 @@ function FaqPage() {
       )}
 
       <ReturnButton />
-      <InfoMap zoom={11}>
+      <InfoMap zoom={11} features={[stepGeoJSON]}>
         <div className={styles.container__info}>
-          <Link to="/plane/map" className={styles.mapMobileBtn}>
+          <Link to="/step/5/map" className={styles.mapMobileBtn}>
             🗺️ {t('map')}
           </Link>
 
-          <PageCard step_id={info.step_id} title={info.title} icon_link={faq} />
+          <PageCard step_id={info.step_id} title={t("mainPage.step_5")} icon_link={faq} />
           <InfoPanel description={info.content} />
           {info.checklist && info.checklist.length > 0 && (
             <Checklist checklist={info.checklist} setIsVisible={setIsVisible} />

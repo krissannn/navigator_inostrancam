@@ -3,7 +3,6 @@ import PageCard from "../../components/PageCard/PageCard";
 import styles from "./Styles.module.scss";
 import Button from "../../components/UI/Button/Button";
 import { useEffect, useState } from "react";
-import { steps } from "../../DB/points";
 import InfoPanel from "../../components/InfoPanel/InfoPanel";
 import Checklist from "../../components/Checklist/Checklist";
 import SuccessPopup from "../../Popups/SuccessPopup/SuccessPopup";
@@ -16,9 +15,11 @@ import { useTranslation } from "react-i18next";
 import type { InfoCard } from "../../types";
 import AiAdvice from "../../components/AiAdvice/AiAdvice";
 import { getLocalizedArticleContent } from "../../utils/localizedContent";
-import type { Building, GeoJSONFeatureCollection } from "../../types";
+
 
 const API_URL = import.meta.env.VITE_API_URL;
+
+
 
 function PlanePage() {
   const [location, setLocation] = useState<"close" | "far" | null>(null);
@@ -36,37 +37,17 @@ function PlanePage() {
         setInfo(data[0]);
         setLoadingArticles(false);
       })
-      .catch((error: unknown) => {
+      .catch((error) => {
         console.error("Failed to load articles:", error);
         setLoadingArticles(false);
       });
   }, []);
 
-  const { allBuildings, loading: loadingBuildings } = useBuildings();
+  const { 
+  loading: loadingBuildings, 
+    stepGeoJSON 
+  } = useBuildings(0);
 
-  const getAllBuildingsGeoJSON = (): GeoJSONFeatureCollection => ({
-    type: "FeatureCollection",
-    features: allBuildings.map((building: Building) => ({
-      type: "Feature",
-      id: building.id,
-      geometry: {
-        type: "Point",
-        coordinates: [building.lon, building.lat],
-      },
-      properties: {
-        name: building.name,
-        address: building.address,
-        hintContent: building.name,
-        balloonContent: `
-            <div style="padding: 10px;">
-              <strong>${building.name}</strong><br/>
-              ${building.address}<br/>
-              <small>${building.description}</small>
-            </div>
-          `,
-      },
-    })),
-  });
 
   if (loadingArticles || loadingBuildings) {
     return <Loading />;
@@ -84,16 +65,15 @@ function PlanePage() {
       <ReturnButton />
 
       <InfoMap
-        features={[getAllBuildingsGeoJSON]}
-        presets={["islands#blueDotIcon"]}
-        zoom={4}
-      >
+      features={[stepGeoJSON]} 
+      zoom={4}>
+
         <div className={styles.container__info}>
-          <Link to="/plane/map" className={styles.mapMobileBtn}>
+          <Link to="/step/0/map" className={styles.mapMobileBtn}>
             🗺️ {t("map")}
           </Link>
 
-          <PageCard step_id={1} title={info?.title} icon_link={plane} />
+          <PageCard step_id={1} title={t("mainPage.step_0")} icon_link={plane} />
 
           <h3 className={styles.container__subtitle}>
             {t("plane-page.originTitle")}

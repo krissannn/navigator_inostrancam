@@ -14,6 +14,7 @@ import { Link } from "react-router";
 import { t } from "i18next";
 import {type InfoCard } from "../../types";
 import AiAdvice from "../../components/AiAdvice/AiAdvice";
+import { useBuildings } from "../../Hooks/useBuildings";
 
 
 const API_URL = import.meta.env.VITE_API_URL
@@ -24,6 +25,11 @@ function VNJPage() {
   const [popupState, setPopupState] = useState<PopupState>("none");
   const [info, setInfo] = useState<InfoCard>();
   const [loading, setLoading] = useState(true);
+   const { 
+        loading: loadingBuildings, 
+        stepGeoJSON 
+      } = useBuildings(4);
+    
 
   useEffect(() => {
     fetch(`${API_URL}/steps/4/articles`)
@@ -94,16 +100,16 @@ function VNJPage() {
       )}
 
       <ReturnButton />
-      <InfoMap zoom={11}>
+      <InfoMap zoom={11} features={[stepGeoJSON]}>
         <div className={styles.container__info}>
 
-          <Link to="/plane/map" className={styles.mapMobileBtn}>
+          <Link to="/step/4/map" className={styles.mapMobileBtn}>
             🗺️ {t('map')}
           </Link>
 
           {info && (
             <> 
-              <PageCard step_id={info.step_id} title={info.title} icon_link={docs} />
+              <PageCard step_id={info.step_id} title={t("mainPage.step_4")} icon_link={docs} />
               <InfoPanel description={info.content} />
 
               <AiAdvice stepId={4} /> 

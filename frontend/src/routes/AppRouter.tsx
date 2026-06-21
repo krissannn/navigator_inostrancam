@@ -10,7 +10,7 @@ import DormitoryPage from "../pages/DormitoryPage/DormitoryPage";
 import VNJPage from "../pages/VNJPage/VNJPage";
 import FaqPage from "../pages/FAQ/FaqPage";
 import DeportationTimerPage from "../pages/DeportationPage/DeportationPage";
-import PlaneMapPage from "../pages/Maps/PlaneMapPage.tsx/PlaneMapPage";
+import FullMapPage from "../pages/FullMapPage/FullMapPage";
 
 const navigationRoutes = [
   { path: "/", page: <MainPage /> },
@@ -23,7 +23,7 @@ const navigationRoutes = [
   { path: "/login", page: <Login /> },
   { path: "/registration", page: <Registration /> },
   { path: "/deportation", page: <DeportationTimerPage /> },
-  { path: "/plane/map", page: <PlaneMapPage /> },
+  { path: "/step/:stepId/map", page: <FullMapPage /> },
   { path: "/*", page: <NotFoundPage /> },
 ] as const;
 

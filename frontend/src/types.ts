@@ -23,6 +23,7 @@ export type Building = {
   lon: number;
   type?: string;
   step_id?: number;
+  building_type: string;
 };
 
 export type GeoJSONFeatureCollection = {

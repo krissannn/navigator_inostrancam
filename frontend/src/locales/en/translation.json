@@ -61,10 +61,14 @@
     "title": "Create account"
   },
   "login-form": {
-    "btn": "Login",
+    "btn": "Log In",
     "error-invalid": "Incorrect username or password",
     "username": "Username",
-    "password": "Password"
+    "password": "Password",
+    "validation": {
+      "username-required": "Username is required",
+      "password-required": "Password is required"
+    }
   },
   "registration-form": {
     "title": "Registration",
@@ -74,7 +78,15 @@
     "country": "Country",
     "btn-title": "Create account",
     "error": "An error occurred during registration",
-    "error-invalid": "Incorrect username or password"
+    "error-invalid": "Incorrect username or password",
+    "validation": {
+      "username-required": "Username is required",
+      "email-required": "Email is required",
+      "email-invalid": "Invalid email format",
+      "password-required": "Password is required",
+      "password-min": "Password must be at least 6 characters long",
+      "country-required": "Country is required"
+    }
   },
   "deportation-banner": {
     "done": "Documents are ready!",

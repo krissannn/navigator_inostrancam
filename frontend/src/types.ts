@@ -1,6 +1,8 @@
+export type LocalizedText = string | Partial<Record<SupportedLanguage, string>>;
+
 export type ChecklistItem = {
   id: number;
-  description: string;
+  description: LocalizedText;
 };
 
 export type InfoCard = {
@@ -22,6 +24,7 @@ export type Building = {
   lat: number;
   lon: number;
   type?: string;
+  step?: number;
   step_id?: number;
   building_type: string;
 };

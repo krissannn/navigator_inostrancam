@@ -2,7 +2,7 @@ import InfoMap from "../../components/InfoMap/InfoMap";
 import PageCard from "../../components/PageCard/PageCard";
 import styles from "./Styles.module.scss";
 import InfoPanel from "../../components/InfoPanel/InfoPanel";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Loading from "../../components/Loading/Loading";
 import SuccessPopup from "../../Popups/SuccessPopup/SuccessPopup";
 import Checklist from "../../components/Checklist/Checklist";
@@ -12,38 +12,17 @@ import { useBuildings } from "../../Hooks/useBuildings";
 import ReturnButton from "../../components/ReturnButton/ReturnButton";
 import AiAdvice from "../../components/AiAdvice/AiAdvice";
 import { useTranslation } from "react-i18next";
-import type {InfoCard } from "../../types";
-import { getLocalizedArticleContent } from "../../utils/localizedContent";
-
-const API_URL = import.meta.env.VITE_API_URL;
+import { useStepArticle } from "../../Hooks/useStepArticle";
 
 function InitialCheckInPage() {
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
-  const [info, setInfo] = useState<InfoCard | null>(null);
-  const [loading, setLoading] = useState(true);
-  const { 
-    loading: loadingBuildings, 
-    stepGeoJSON 
-  } = useBuildings(1);
 
-  useEffect(() => {
-    fetch(`${API_URL}/steps/1/articles`)
-      .then((response) => response.json())
-      .then((data: InfoCard[]) => {
-        setInfo(data[0] ?? null);
-        setLoading(false);
-      })
-      .catch((error: unknown) => {
-        console.error("Failed to load articles:", error);
-        setLoading(false);
-      });
-  }, []);
+  const { info, loading: loadingArticles, localizedContent, localizedChecklist } = useStepArticle(1);
+  const { loading: loadingBuildings, stepGeoJSON } = useBuildings(1);
 
-
-
-  if (loading || loadingBuildings || !info) {
+  if (loadingArticles || loadingBuildings || !info) {
     return <Loading />;
   }
 
@@ -57,10 +36,7 @@ function InitialCheckInPage() {
       )}
 
       <ReturnButton />
-      <InfoMap
-        features={[stepGeoJSON]}
-        zoom={11}
-      >
+      <InfoMap features={[stepGeoJSON]} zoom={11}>
         <div className={styles.container__info}>
           <Link to="/step/1/map" className={styles.mapMobileBtn}>
             🗺️ {t("map")}
@@ -71,19 +47,17 @@ function InitialCheckInPage() {
             title={t("mainPage.step_1")}
             icon_link={motorcycle}
           />
-          <InfoPanel
-            description={getLocalizedArticleContent(info, i18n.language)}
-          />
+
+          <InfoPanel description={localizedContent} />  
 
           <AiAdvice stepId={1} />
 
-          {info.checklist.length > 0 && (
-            <Checklist checklist={info.checklist} setIsVisible={setIsVisible} />
+          {localizedChecklist.length > 0 && (
+            <Checklist checklist={localizedChecklist} setIsVisible={setIsVisible} />  
           )}
         </div>
       </InfoMap>
     </>
   );
 }
-
 export default InitialCheckInPage;

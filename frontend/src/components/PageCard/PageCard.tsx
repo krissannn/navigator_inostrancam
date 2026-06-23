@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import classes from "./Styles.module.scss"
 
 interface PageCardProps {
@@ -23,7 +24,7 @@ function PageCard({ step_id, title, icon_link, description, onClick }: PageCardP
         
         <div className={classes.page_card_content}>
           <div className={classes.page_card_header}>
-            <span className={classes.page_card_step}>Шаг {step_id}</span>
+            <span className={classes.page_card_step}>{t("step")} {step_id}</span>
           </div>
           
           <h3 className={classes.page_card_title}>{title}</h3>

@@ -1,5 +1,7 @@
+
 import { useEffect, useState } from 'react';
 import type { Building, GeoJSONFeatureCollection } from '../types';
+import DOMPurify from 'dompurify';
 
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -22,13 +24,27 @@ const YANDEX_PRESETS: Record<string, string> = {
   pharmacy: "islands#darkRedMedicalIcon",
   sport: "islands#blueSportIcon",
   bank: "islands#greenMoneyIcon",
-  sim_store: "islands#yellowCircleIcon",
-  mfc: "islands#violetGovernmentIcon",
+  sim_store: "islands#orangeCircleIcon",
+  mfc: "islands#blueGovernmentIcon",
 };
 
 function buildingToFeature(building: Building) {
   const presetStyle = YANDEX_PRESETS[building.building_type] || "islands#blueDotIcon"; 
   
+  // 2. Создаем сырую HTML-строку
+  const rawBalloonContent = `
+    <div style="padding: 10px; font-family: sans-serif; min-width: 200px;">
+      <strong style="color: #1e4391; font-size: 14px;">${building.name}</strong><br/>
+      <span style="color: #222; font-size: 13px; display: inline-block; margin-top: 4px;">📍 ${building.address}</span><br/>
+      ${building.description ? `<small style="color: #666; display: inline-block; margin-top: 6px; line-height: 1.3;">${building.description}</small>` : ''}
+    </div>
+  `;
+
+  const cleanBalloonContent = DOMPurify.sanitize(rawBalloonContent, {
+    ALLOWED_TAGS: ['div', 'strong', 'span', 'br', 'small'],
+    ALLOWED_ATTR: ['style']
+  });
+
   return {
     type: "Feature" as const,
     id: building.id,
@@ -40,21 +56,13 @@ function buildingToFeature(building: Building) {
       name: building.name,
       address: building.address,
       hintContent: building.name,
-      balloonContent: `
-        <div style="padding: 10px; font-family: sans-serif; min-width: 200px;">
-          <strong style="color: #1e4391; font-size: 14px;">${building.name}</strong><br/>
-          <span style="color: #222; font-size: 13px; display: inline-block; margin-top: 4px;">📍 ${building.address}</span><br/>
-          ${building.description ? `<small style="color: #666; display: inline-block; margin-top: 6px; line-height: 1.3;">${building.description}</small>` : ''}
-        </div>
-      `,
+      balloonContent: cleanBalloonContent, 
     },
-
     options: {
       preset: presetStyle
     }
   };
 }
-
 function toFeatureCollection(buildings: Building[]): GeoJSONFeatureCollection {
   return {
     type: "FeatureCollection",

@@ -16,9 +16,7 @@ function Card({ number, icon, onClick }: CardProps) {
         <img className={classes.card_icon} src={icon} alt="" />
         <h3 className={classes.card_counter}>{number}</h3>
       </div>
-
       <h3 className={classes.card_title}>{t(`mainPage.step_${number}`)}</h3>
-      
       <span className={classes.detailsText}>{t("mainPage.moreDetails")}</span>
     </div>
   );

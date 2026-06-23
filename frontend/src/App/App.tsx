@@ -3,21 +3,13 @@
 
 import './Styles.scss'
 import { BrowserRouter, } from 'react-router'
-
 import AppRouter from '../routes/AppRouter.tsx'
 
-
-
-
 function App() {
-
-
   return (
     <>
       <BrowserRouter>
-
           <AppRouter />
-      
       </BrowserRouter>
     </>
   )

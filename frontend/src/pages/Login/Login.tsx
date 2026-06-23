@@ -19,7 +19,14 @@ function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const schema = useMemo(() => createLoginSchema(t), [t]);
+  const schema = useMemo(
+    () =>
+      createLoginSchema((key, defaultValue) => {
+        const translated = t(key, { defaultValue: defaultValue ?? key });
+        return typeof translated === "string" ? translated : defaultValue ?? key;
+      }),
+    [t]
+  );
 
   const {
     register,

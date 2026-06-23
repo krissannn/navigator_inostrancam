@@ -2,7 +2,7 @@ import ReactMarkdown from "react-markdown";
 import styles from './Styles.module.scss'
 import remarkGfm from "remark-gfm";
 
-function InfoPanel({description}: {description: string}) {
+function InfoPanel({description}: {description: string | null | undefined}) {
   return (
     <div className={styles.markdownContent}>
       <ReactMarkdown remarkPlugins={[remarkGfm]}>

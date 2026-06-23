@@ -33,18 +33,4 @@ function toFeatureCollection(buildings: Building[]): GeoJSONFeatureCollection {
 export const convertToGeoJSON = (buildings: Building[]) =>
   toFeatureCollection(buildings);
 
-export const closeGeoJSON = (buildings: Building[]) =>
-  toFeatureCollection(
-    buildings.filter((b) => b.type === "close" && b.step_id === 0)
-  );
 
-export const longGeoJSON = (buildings: Building[]) =>
-  toFeatureCollection(
-    buildings.filter((b) => b.type === "long" && b.step_id === 0)
-  );
-
-export const mfcGeoJSON = (buildings: Building[]) =>
-  toFeatureCollection(buildings.filter((b) => b.type === "mfc"));
-
-export const bankGeoJSON = (buildings: Building[]) =>
-  toFeatureCollection(buildings.filter((b) => b.type === "bank"));

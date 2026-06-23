@@ -1,4 +1,4 @@
-// ── Overlay ───────────────────────────────────────────────────
+
 .overlay {
   position: fixed;
   inset: 0;
@@ -16,7 +16,6 @@
   }
 }
 
-// ── Popup ─────────────────────────────────────────────────────
 .popup {
   position: relative;
   background: var(--white-color);
@@ -32,8 +31,6 @@
     0 24px 64px rgba(30, 67, 145, 0.18),
     0 4px 16px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-
-  // анимация появления
   transform: scale(0.88) translateY(24px);
   opacity: 0;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
@@ -43,7 +40,6 @@
     opacity: 1;
   }
 
-  // верхняя цветная полоска
   &::before {
     content: '';
     position: absolute;
@@ -55,7 +51,6 @@
   }
 }
 
-// ── Кнопка закрыть ────────────────────────────────────────────
 .closeBtn {
   position: absolute;
   top: 16px;
@@ -79,7 +74,6 @@
   }
 }
 
-// ── Конфетти-декор ────────────────────────────────────────────
 .confetti {
   position: absolute;
   inset: 0;
@@ -101,7 +95,6 @@
   &:nth-child(5) { left: 75%; top: 65%; }
 }
 
-// ── Иконка ────────────────────────────────────────────────────
 .iconRing {
   width: clamp(76px, 18vw, 92px);
   height: clamp(76px, 18vw, 92px);
@@ -130,7 +123,6 @@
   }
 }
 
-// ── Текст ─────────────────────────────────────────────────────
 .body {
   text-align: center;
   display: flex;
@@ -154,14 +146,12 @@
   max-width: 340px;
 }
 
-// ── Разделитель ───────────────────────────────────────────────
 .divider {
   width: 100%;
   height: 1px;
   background: var(--light-grey-color);
 }
 
-// ── FAQ-блок ──────────────────────────────────────────────────
 .faqBlock {
   display: flex;
   align-items: flex-start;
@@ -200,7 +190,6 @@
   line-height: 1.5;
 }
 
-// ── Кнопки ────────────────────────────────────────────────────
 .actions {
   display: flex;
   flex-direction: column;
@@ -251,7 +240,6 @@
   }
 }
 
-// ── Анимации ──────────────────────────────────────────────────
 @keyframes shimmer {
   0%   { background-position: 200% 0; }
   100% { background-position: -200% 0; }

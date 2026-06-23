@@ -176,5 +176,6 @@
       "30min": "30 min",
       "moreThanHour": "More than an hour"
     }
-  }
+  },
+  "step": "Step"
 }

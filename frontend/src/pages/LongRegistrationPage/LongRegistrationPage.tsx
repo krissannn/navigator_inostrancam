@@ -5,50 +5,32 @@ import Loading from "../../components/Loading/Loading"
 import PageCard from "../../components/PageCard/PageCard"
 import SuccessPopup from "../../Popups/SuccessPopup/SuccessPopup"
 import docs from "../../assets/docs.svg"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import styles from "./Styles.module.scss"
 import ReturnButton from "../../components/ReturnButton/ReturnButton"
 import { Link, useNavigate } from "react-router"
-import { t } from "i18next"
-import { type InfoCard } from "../../types"
+import { useTranslation } from "react-i18next"  
 import AiAdvice from "../../components/AiAdvice/AiAdvice"
 import { useBuildings } from "../../Hooks/useBuildings"
+import { useStepArticle } from "../../Hooks/useStepArticle"
 
-const API_URL = import.meta.env.VITE_API_URL
-
-function InitialRegistrationPage(){
+function InitialRegistrationPage() {
   const [isVisible, setIsVisible] = useState(false)
-  const [info, setInfo] = useState<InfoCard | null>(null) 
-  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
-   const { 
-        loading: loadingBuildings, 
-        stepGeoJSON 
-      } = useBuildings(3);
-    
-  
-  useEffect(() => {
-    fetch(`${API_URL}/steps/3/articles`)
-      .then(response => response.json())
-      .then(data => {
-        setInfo(data[0])
-        setLoading(false)
-      })
-      .catch(error => {
-        console.error("Ошибка:", error)
-        setLoading(false)
-      })
-  }, [])
+  const { t } = useTranslation()
 
-  if (loading || !info || loadingBuildings) {
+  const { info, loading: loadingArticles, localizedContent, localizedChecklist } = useStepArticle(3)
+  const { loading: loadingBuildings, stepGeoJSON } = useBuildings(3)
+
+  if (loadingArticles || loadingBuildings || !info) {
     return <Loading />
   }
 
   return (
     <>
       {isVisible && (
-        <SuccessPopup 
-          onNext={() => navigate("/vnj")} 
+        <SuccessPopup
+          onNext={() => navigate("/vnj")}
           onClose={() => setIsVisible(prev => !prev)}
         />
       )}
@@ -57,16 +39,16 @@ function InitialRegistrationPage(){
       <InfoMap zoom={11} features={[stepGeoJSON]}>
         <div className={styles.container__info}>
           <Link to="/step/3/map" className={styles.mapMobileBtn}>
-            🗺️ {t('map')}
+            🗺️ {t("map")}
           </Link>
 
           <PageCard step_id={info.step_id} title={t("mainPage.step_3")} icon_link={docs} />
-          <InfoPanel description={info.content} />
+          <InfoPanel description={localizedContent} />
 
-          <AiAdvice stepId={3} /> 
+          <AiAdvice stepId={3} />
 
-          {info.checklist && info.checklist.length > 0 && (
-            <Checklist checklist={info.checklist} setIsVisible={setIsVisible} />
+          {localizedChecklist.length > 0 && (
+            <Checklist checklist={localizedChecklist} setIsVisible={setIsVisible} />
           )}
         </div>
       </InfoMap>

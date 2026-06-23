@@ -1,6 +1,8 @@
 import * as yup from "yup";
 
-export const createRegisterSchema = (t: (key: string, defaultValue?: string) => string) => {
+type TranslationFunction = (...args: any[]) => string;
+
+export const createRegisterSchema = (t: TranslationFunction) => {
   return yup.object().shape({
     username: yup
       .string()
@@ -21,7 +23,7 @@ export const createRegisterSchema = (t: (key: string, defaultValue?: string) => 
 
 export type RegisterFormData = yup.InferType<ReturnType<typeof createRegisterSchema>>;
 
-export const createLoginSchema = (t: (key: string, defaultValue?: string) => string) => {
+export const createLoginSchema = (t: TranslationFunction) => {
   return yup.object().shape({
     username: yup
       .string()

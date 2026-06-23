@@ -18,8 +18,14 @@ function Registration() {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  // Инициализируем схему внутри useMemo, чтобы она обновлялась при смене языка (t)
-  const schema = useMemo(() => createRegisterSchema(t), [t]);
+  const schema = useMemo(
+    () =>
+      createRegisterSchema((key, defaultValue) => {
+        const translated = t(key, { defaultValue: defaultValue ?? key });
+        return typeof translated === "string" ? translated : defaultValue ?? key;
+      }),
+    [t]
+  );
 
   const {
     register,

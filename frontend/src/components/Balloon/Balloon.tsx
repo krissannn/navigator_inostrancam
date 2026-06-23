@@ -1,9 +1,13 @@
-// components/BalloonContent.jsx
+
+import type { Building } from '../../types';
 import styles from './Styles.module.scss'; 
 
+type BalloonContentProps = {
+  point: Building;
+  totalPoints: number;
+};
 
-
-const BalloonContent = ({ point, totalPoints }) => {
+const BalloonContent = ({ point, totalPoints }: BalloonContentProps) => {
   return (
     <>
       <div className={styles.container}>

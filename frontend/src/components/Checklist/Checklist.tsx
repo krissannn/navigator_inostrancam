@@ -2,7 +2,7 @@ import confetti from "canvas-confetti";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./Styles.module.scss";
-import type { ChecklistItem } from "../../types";
+import type { ChecklistItem, SupportedLanguage } from "../../types";
 
 type ChecklistPoint = ChecklistItem & {
   isMarked: boolean;
@@ -82,7 +82,7 @@ function Checklist({
     );
   }, [allChecked, onAllCompleted, setIsVisible]);
 
-  const handleToggleCheckbox = (id: string) => {
+  const handleToggleCheckbox = (id: number) => {
     setChecklistPoints((prev) =>
       prev.map((point) =>
         point.id === id ? { ...point, isMarked: !point.isMarked } : point
@@ -90,8 +90,7 @@ function Checklist({
     );
   };
 
-  // Определяем безопасный текущий язык
-  const currentLang = (i18n.language || "ru") as "ru" | "en" | "zh";
+  const currentLang = (i18n.language || "ru") as SupportedLanguage;
 
   return (
     <div className={styles.checklist}>
@@ -116,7 +115,10 @@ function Checklist({
       <ul className={styles.checklist__list}>
         {checklistPoints.map((point, index) => {
 
-          const textToShow = point.description[currentLang] || point.description["ru"];
+          const textToShow =
+            typeof point.description === "string"
+              ? point.description
+              : point.description[currentLang] ?? point.description.ru ?? "";
 
           return (
             <li
